@@ -1,0 +1,556 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "emoji": "❤️",
+      "title": "Expresar amor"
+    },
+    {
+      "id": 2,
+      "emoji": "🥹",
+      "title": "Cuando nos extrañamos"
+    },
+    {
+      "id": 3,
+      "emoji": "📸",
+      "title": "Recordar nuestra historia"
+    },
+    {
+      "id": 4,
+      "emoji": "💝",
+      "title": "Expresar gratitud"
+    },
+    {
+      "id": 5,
+      "emoji": "✨",
+      "title": "Expresar admiración"
+    },
+    {
+      "id": 6,
+      "emoji": "🫂",
+      "title": "Conocernos más profundamente"
+    },
+    {
+      "id": 7,
+      "emoji": "💞",
+      "title": "Intimidad emocional"
+    },
+    {
+      "id": 8,
+      "emoji": "💍",
+      "title": "Planes a futuro"
+    },
+    {
+      "id": 9,
+      "emoji": "🔥",
+      "title": "Deseo, atracción y fantasías sexuales"
+    },
+    {
+      "id": 10,
+      "emoji": "💗",
+      "title": "Nuestra complicidad"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "category": 1,
+      "text": "¿En qué momento de nuestra relación sentiste que lo que tenías conmigo era algo verdaderamente especial?"
+    },
+    {
+      "id": 2,
+      "category": 1,
+      "text": "¿Qué es lo que más te enamora de mí hoy, que quizás no conocías cuando empezamos a ser novios?"
+    },
+    {
+      "id": 3,
+      "category": 1,
+      "text": "Cuando me decís «te amo», ¿qué sentimientos pasan por tu corazón que esas dos palabras no alcanzan a expresar?"
+    },
+    {
+      "id": 4,
+      "category": 1,
+      "text": "¿Cuál de mis maneras de demostrarte amor te hace sentir más querida y especial?"
+    },
+    {
+      "id": 5,
+      "category": 1,
+      "text": "¿En qué momento conmigo has sentido que podés ser completamente vos, sin miedo a que te juzgue?"
+    },
+    {
+      "id": 6,
+      "category": 1,
+      "text": "Si tuvieras que explicarle a alguien cómo se siente nuestro amor, sin describir cómo soy físicamente, ¿qué le dirías?"
+    },
+    {
+      "id": 7,
+      "category": 1,
+      "text": "¿Qué cosa de nuestra relación te hace pensar que valió la pena que nuestros caminos se encontraran?"
+    },
+    {
+      "id": 8,
+      "category": 1,
+      "text": "¿Qué sentimiento bonito has descubierto conmigo que antes no habías experimentado de esta manera?"
+    },
+    {
+      "id": 9,
+      "category": 1,
+      "text": "¿Qué hago, incluso sin darme cuenta, que te recuerda que sos una persona muy importante en mi vida?"
+    },
+    {
+      "id": 10,
+      "category": 1,
+      "text": "Si esta noche pudieras decirme algo desde lo más profundo de tu corazón, sin vergüenza ni miedo a ponerte sentimental, ¿qué me dirías?"
+    },
+    {
+      "id": 11,
+      "category": 2,
+      "text": "¿En qué momentos del día me extrañás más y qué es lo primero que se te viene a la mente?"
+    },
+    {
+      "id": 12,
+      "category": 2,
+      "text": "Cuando estamos separados y pensás en mí, ¿qué recuerdo nuestro te hace sonreír inmediatamente?"
+    },
+    {
+      "id": 13,
+      "category": 2,
+      "text": "¿Qué es lo que más extrañás de tenerme físicamente a tu lado: mis abrazos, mis besos, mi voz, mi manera de molestarte cariñosamente o alguna otra cosa?"
+    },
+    {
+      "id": 14,
+      "category": 2,
+      "text": "Cuando vemos nuestras fotos juntos, ¿qué es lo primero que sentís?"
+    },
+    {
+      "id": 15,
+      "category": 2,
+      "text": "¿Qué te imaginás que vamos a hacer en los primeros cinco minutos cuando volvamos a vernos?"
+    },
+    {
+      "id": 16,
+      "category": 2,
+      "text": "Si ahorita apareciera a tu lado y pudiéramos pasar una hora juntos, ¿cómo te gustaría que aprovecháramos ese tiempo?"
+    },
+    {
+      "id": 17,
+      "category": 2,
+      "text": "¿Cuál es el abrazo nuestro que más recordás y qué lo hizo tan especial?"
+    },
+    {
+      "id": 18,
+      "category": 2,
+      "text": "¿Hay alguna cosa que quisieras que hiciéramos más seguido cuando estamos juntos porque la extrañás cuando no nos vemos?"
+    },
+    {
+      "id": 19,
+      "category": 2,
+      "text": "Cuando te acostás a dormir y te hago falta, ¿qué te gustaría que pudiera decirte al oído?"
+    },
+    {
+      "id": 20,
+      "category": 2,
+      "text": "Si mañana tuviéramos un día entero para nosotros, sin trabajo, estudios ni compromisos, ¿cómo sería tu día perfecto conmigo desde que despertamos hasta que nos dormimos?"
+    },
+    {
+      "id": 21,
+      "category": 3,
+      "text": "¿Cuál fue tu primera impresión de mí y en qué momento empezó a cambiar hacia algo más romántico?"
+    },
+    {
+      "id": 22,
+      "category": 3,
+      "text": "¿Qué recordás del 15 de marzo, cuando comenzó oficialmente nuestra historia?"
+    },
+    {
+      "id": 23,
+      "category": 3,
+      "text": "¿Cuál fue el primer momento en que pensaste «me estoy enamorando muchísimo de este hombre»?"
+    },
+    {
+      "id": 24,
+      "category": 3,
+      "text": "De todos los besos que nos hemos dado, ¿hay alguno que recordés de manera especialmente bonita? ¿Por qué?"
+    },
+    {
+      "id": 25,
+      "category": 3,
+      "text": "¿Qué sentís cuando ves nuestra primera foto juntos, esa que tenés en tu mesa de noche?"
+    },
+    {
+      "id": 26,
+      "category": 3,
+      "text": "De todos nuestros aniversarios y detalles, ¿cuál te ha hecho sentir más emocionada y querida?"
+    },
+    {
+      "id": 27,
+      "category": 3,
+      "text": "¿Qué sentiste cuando leíste las cartas de nuestros seis meses y recordaste todo lo que hemos vivido?"
+    },
+    {
+      "id": 28,
+      "category": 3,
+      "text": "¿Cuál ha sido nuestro momento más gracioso, de esos que recordás y todavía te dan ganas de reírte?"
+    },
+    {
+      "id": 29,
+      "category": 3,
+      "text": "Si pudiéramos regresar a vivir exactamente igual un solo día de nuestra relación, ¿cuál elegirías?"
+    },
+    {
+      "id": 30,
+      "category": 3,
+      "text": "Si nuestra historia fuera una película romántica, ¿qué tres escenas nuestras definitivamente tendrían que aparecer?"
+    },
+    {
+      "id": 31,
+      "category": 4,
+      "text": "¿Qué cosa que he hecho por vos te gustaría agradecerme y quizás nunca has encontrado el momento de decírmelo?"
+    },
+    {
+      "id": 32,
+      "category": 4,
+      "text": "¿Cuál de mis pequeños detalles cotidianos valorás más, aunque para mí parezca algo sencillo?"
+    },
+    {
+      "id": 33,
+      "category": 4,
+      "text": "¿De qué manera sentís que tu vida ha cambiado positivamente desde que estamos juntos?"
+    },
+    {
+      "id": 34,
+      "category": 4,
+      "text": "¿Qué momento difícil se te hizo más llevadero porque sabías que me tenías a tu lado?"
+    },
+    {
+      "id": 35,
+      "category": 4,
+      "text": "¿Qué has aprendido del amor gracias a nuestra relación?"
+    },
+    {
+      "id": 36,
+      "category": 4,
+      "text": "¿Qué gesto mío te ha hecho sentir cuidada, protegida emocionalmente o acompañada cuando lo necesitabas?"
+    },
+    {
+      "id": 37,
+      "category": 4,
+      "text": "¿Qué cualidad de nuestra relación agradecés tener y no quisieras que perdiéramos con el tiempo?"
+    },
+    {
+      "id": 38,
+      "category": 4,
+      "text": "¿Hay algo que hago por nuestra relación que creés que debería saber cuánto significa para vos?"
+    },
+    {
+      "id": 39,
+      "category": 4,
+      "text": "¿Qué experiencia bonita hemos podido vivir juntos que te hace sentir agradecida por habernos conocido?"
+    },
+    {
+      "id": 40,
+      "category": 4,
+      "text": "Si hoy tuviéramos que decirnos tres cosas específicas por las que estamos agradecidos el uno con el otro, ¿cuáles elegirías?"
+    },
+    {
+      "id": 41,
+      "category": 5,
+      "text": "¿Qué cualidad de mi personalidad admirás más y por qué?"
+    },
+    {
+      "id": 42,
+      "category": 5,
+      "text": "¿Qué es algo que has visto en mí que te hace sentir orgullosa de tenerme como pareja?"
+    },
+    {
+      "id": 43,
+      "category": 5,
+      "text": "¿Hay alguna manera en la que enfrento los problemas o las responsabilidades que te inspire?"
+    },
+    {
+      "id": 44,
+      "category": 5,
+      "text": "¿Qué parte de mi personalidad creés que las demás personas no conocen tan bien como vos?"
+    },
+    {
+      "id": 45,
+      "category": 5,
+      "text": "¿Cuál es una fortaleza mía que quizás yo mismo no reconozco lo suficiente?"
+    },
+    {
+      "id": 46,
+      "category": 5,
+      "text": "¿Qué cosa que he conseguido o que estoy intentando conseguir te genera admiración?"
+    },
+    {
+      "id": 47,
+      "category": 5,
+      "text": "¿Qué rasgo de mi manera de amar te gustaría que conserváramos incluso cuando llevemos muchos años juntos?"
+    },
+    {
+      "id": 48,
+      "category": 5,
+      "text": "¿Qué cualidad tuya sentís que ha crecido desde que estamos en esta relación y te hace sentir orgullosa de vos misma?"
+    },
+    {
+      "id": 49,
+      "category": 5,
+      "text": "¿Qué creés que tenemos cada uno como personas que hace que formemos un buen equipo?"
+    },
+    {
+      "id": 50,
+      "category": 5,
+      "text": "Si dentro de muchos años alguien te preguntara qué admirás de la persona con la que elegiste compartir tu vida, ¿qué te gustaría poder responder?"
+    },
+    {
+      "id": 51,
+      "category": 6,
+      "text": "¿Qué sueño personal tenés en tu corazón que todavía no hemos conversado lo suficiente?"
+    },
+    {
+      "id": 52,
+      "category": 6,
+      "text": "¿Qué aspecto de tu infancia te gustaría que yo comprendiera mejor para conocer a la persona que sos hoy?"
+    },
+    {
+      "id": 53,
+      "category": 6,
+      "text": "¿Qué cosas pequeñas te hacen feliz incluso cuando has tenido un día complicado?"
+    },
+    {
+      "id": 54,
+      "category": 6,
+      "text": "¿Cuál es una preocupación que estás viviendo actualmente y en la que te gustaría sentir más mi acompañamiento?"
+    },
+    {
+      "id": 55,
+      "category": 6,
+      "text": "¿Qué parte de vos sentís que pocas personas conocen, pero te gustaría que yo llegara a comprender?"
+    },
+    {
+      "id": 56,
+      "category": 6,
+      "text": "¿Qué necesitás emocionalmente cuando estás triste: palabras bonitas, abrazos, compañía, soluciones o simplemente que te escuche?"
+    },
+    {
+      "id": 57,
+      "category": 6,
+      "text": "¿Qué es algo que te da miedo del futuro, aunque tengás mucha ilusión por todo lo que viene?"
+    },
+    {
+      "id": 58,
+      "category": 6,
+      "text": "¿Qué experiencia de tu vida te ha enseñado una lección que quisieras compartir conmigo?"
+    },
+    {
+      "id": 59,
+      "category": 6,
+      "text": "¿Qué sueño te gustaría cumplir por vos misma y cómo podría apoyarte sin quitarte tu independencia?"
+    },
+    {
+      "id": 60,
+      "category": 6,
+      "text": "¿Qué te gustaría que siguiera descubriendo de vos, incluso después de llevar muchos años juntos?"
+    },
+    {
+      "id": 61,
+      "category": 7,
+      "text": "¿En qué momentos conmigo sentís mayor tranquilidad emocional, como si pudieras bajar la guardia y simplemente ser vos?"
+    },
+    {
+      "id": 62,
+      "category": 7,
+      "text": "¿Qué puedo hacer cuando nos extrañamos para que sintás mi cariño sin que ninguno tenga que descuidar sus responsabilidades?"
+    },
+    {
+      "id": 63,
+      "category": 7,
+      "text": "¿Hay alguna inseguridad personal que te gustaría que yo comprendiera mejor para acompañarte con más sensibilidad?"
+    },
+    {
+      "id": 64,
+      "category": 7,
+      "text": "¿Qué significa para vos sentirte emocionalmente segura en una relación?"
+    },
+    {
+      "id": 65,
+      "category": 7,
+      "text": "Cuando tenemos un malentendido, ¿qué actitud mía te ayuda más a sentir que seguimos siendo un equipo?"
+    },
+    {
+      "id": 66,
+      "category": 7,
+      "text": "¿Qué te gustaría que siempre recordáramos sobre nuestro amor incluso cuando estemos molestos o tengamos opiniones diferentes?"
+    },
+    {
+      "id": 67,
+      "category": 7,
+      "text": "¿Hay alguna necesidad emocional tuya que te cueste expresar por miedo a sentir que estás pidiendo demasiado?"
+    },
+    {
+      "id": 68,
+      "category": 7,
+      "text": "¿Qué significa para vos que alguien te elija y te siga eligiendo incluso en los días difíciles?"
+    },
+    {
+      "id": 69,
+      "category": 7,
+      "text": "¿Qué aspecto de nuestra comunicación sentís que hemos mejorado y cuál te gustaría que sigamos construyendo juntos?"
+    },
+    {
+      "id": 70,
+      "category": 7,
+      "text": "¿Qué promesa emocional realista te gustaría que nos hiciéramos, no para ser una pareja perfecta, sino para cuidarnos cuando las cosas no sean fáciles?"
+    },
+    {
+      "id": 71,
+      "category": 8,
+      "text": "Cuando te imaginás nuestra vida dentro de cinco años, ¿qué es lo primero que visualizás?"
+    },
+    {
+      "id": 72,
+      "category": 8,
+      "text": "¿Cómo te imaginás una mañana cualquiera en nuestra casa cuando ya estemos casados?"
+    },
+    {
+      "id": 73,
+      "category": 8,
+      "text": "¿Qué es lo que más ilusión te provoca de la posibilidad de convertirnos algún día en esposos?"
+    },
+    {
+      "id": 74,
+      "category": 8,
+      "text": "¿Qué tradiciones románticas te gustaría que tuviéramos en nuestro matrimonio, incluso después de muchos años?"
+    },
+    {
+      "id": 75,
+      "category": 8,
+      "text": "¿Cómo te gustaría que organicemos nuestros sueños económicos para ahorrar y construir algo juntos, sin dejar de disfrutar nuestro noviazgo?"
+    },
+    {
+      "id": 76,
+      "category": 8,
+      "text": "¿Qué tipo de hogar te gustaría que construyéramos, no solamente por su apariencia, sino por cómo nos sentiríamos viviendo ahí?"
+    },
+    {
+      "id": 77,
+      "category": 8,
+      "text": "¿Cómo imaginás que podríamos apoyarnos mutuamente con nuestras carreras, mi trabajo y tus metas en Derecho?"
+    },
+    {
+      "id": 78,
+      "category": 8,
+      "text": "¿Qué aventuras, viajes o experiencias te gustaría que viviéramos antes de casarnos?"
+    },
+    {
+      "id": 79,
+      "category": 8,
+      "text": "Si algún día decidimos formar una familia, ¿qué valores y enseñanzas te gustaría que caracterizaran nuestro hogar?"
+    },
+    {
+      "id": 80,
+      "category": 8,
+      "text": "Cuando seamos viejitos y recordemos toda nuestra historia, ¿qué te gustaría que pudiéramos decir sobre la manera en que nos amamos y construimos nuestra vida?"
+    },
+    {
+      "id": 81,
+      "category": 9,
+      "text": "¿Qué es lo que más te atrae físicamente de mí y qué detalle de mi apariencia te encanta especialmente?"
+    },
+    {
+      "id": 82,
+      "category": 9,
+      "text": "¿Qué tipo de beso mío te gusta más y en qué momentos te dan más ganas de besarme?"
+    },
+    {
+      "id": 83,
+      "category": 9,
+      "text": "¿Qué cosas que hago, incluso sin intención, despiertan más tu atracción hacia mí?"
+    },
+    {
+      "id": 84,
+      "category": 9,
+      "text": "¿Cuál ha sido uno de nuestros momentos más apasionados que recordás con especial emoción?"
+    },
+    {
+      "id": 85,
+      "category": 9,
+      "text": "¿Qué tipo de caricias, abrazos o muestras de afecto te hacen sentir más deseada?"
+    },
+    {
+      "id": 86,
+      "category": 9,
+      "text": "¿Hay alguna fantasía romántica o sexual que te genere curiosidad y que te gustaría contarme, aunque solamente quedara en nuestra imaginación?"
+    },
+    {
+      "id": 87,
+      "category": 9,
+      "text": "Si pudiéramos organizar una noche completamente romántica, privada y sin interrupciones, ¿cómo te gustaría que empezara y qué ambiente crearíamos?"
+    },
+    {
+      "id": 88,
+      "category": 9,
+      "text": "¿Qué te gusta más del coqueteo entre nosotros y qué podríamos hacer para mantener viva esa emoción con los años?"
+    },
+    {
+      "id": 89,
+      "category": 9,
+      "text": "¿Qué cosas te hacen sentir cómoda y segura al hablar de tus deseos, y qué límites te gustaría que siempre respetemos?"
+    },
+    {
+      "id": 90,
+      "category": 9,
+      "text": "¿Qué te gustaría que descubriéramos juntos sobre nuestra intimidad para disfrutarla con más confianza, comunicación y complicidad?"
+    },
+    {
+      "id": 91,
+      "category": 10,
+      "text": "¿Qué es lo más bonito de que, además de ser novios, también podamos ser mejores amigos y compañeros de tantas cosas?"
+    },
+    {
+      "id": 92,
+      "category": 10,
+      "text": "¿Qué parte de nuestras bromas, juegos, actuaciones improvisadas y maneras de molestarnos cariñosamente te encanta más?"
+    },
+    {
+      "id": 93,
+      "category": 10,
+      "text": "Si pudiéramos crear una tradición solamente nuestra, que nadie más entendiera y que mantuviéramos durante años, ¿cuál sería?"
+    },
+    {
+      "id": 94,
+      "category": 10,
+      "text": "¿Qué cosas nuevas te gustaría que probáramos juntos, como actividades, aventuras, pasatiempos o experiencias que todavía no hemos vivido?"
+    },
+    {
+      "id": 95,
+      "category": 10,
+      "text": "Cuando entrenamos juntos, salimos a comer o simplemente pasamos tiempo acompañándonos, ¿qué sentís que nos hace disfrutar tanto de estar en compañía del otro?"
+    },
+    {
+      "id": 96,
+      "category": 10,
+      "text": "Si pudiéramos escribir una carta para nosotros mismos y abrirla dentro de diez años, ¿qué te gustaría que dijera sobre nuestro amor actual y nuestros sueños?"
+    },
+    {
+      "id": 97,
+      "category": 10,
+      "text": "¿Qué deberíamos seguir haciendo intencionalmente para que nuestra relación conserve la ternura, las risas, los besos y la emoción de nuestros primeros meses?"
+    },
+    {
+      "id": 98,
+      "category": 10,
+      "text": "Si mañana nos despertáramos y tuviéramos la oportunidad de volver a empezar nuestra historia desde el día en que nos conocimos, sabiendo todo lo que sabemos hoy, ¿qué momentos volverías a elegir vivir conmigo?"
+    },
+    {
+      "id": 99,
+      "category": 10,
+      "text": "¿Qué es algo que todavía no me has dicho sobre lo que significo en tu vida y que te gustaría que supiera esta noche?"
+    },
+    {
+      "id": 100,
+      "category": 10,
+      "text": "Si la vida nos permite pasar muchísimos años juntos, ¿qué te gustaría que nunca cambiara de nuestra manera de amarnos, y qué podemos hacer desde hoy para cuidar ese amor?"
+    }
+  ]
+}

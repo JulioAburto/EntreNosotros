@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#421c34" />
+  <meta name="description" content="100 preguntas para conocernos más. Un juego romántico de verdad o verdad para Julio y Naza." />
+  <title>Verdad o verdad ♡ Julio &amp; Naza</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --wine: #421c34;
+      --wine-2: #6c2b50;
+      --rose: #b45278;
+      --rose-dark: #8f365c;
+      --petal: #edabc0;
+      --paper: #fffaf6;
+      --white: #fff;
+      --ink: #382b35;
+      --muted: #806e78;
+      --line: #ecd9df;
+      --success: #2e7e6c;
+      --shadow: 0 12px 34px rgba(67, 27, 51, .085);
+      --radius: 25px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 310px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      color: var(--ink);
+      background: radial-gradient(ellipse 700px 500px at 3% 0%, #fce5ec 0%, transparent 74%),
+                  radial-gradient(ellipse 700px 650px at 100% 32%, #ffece6 0%, transparent 66%),
+                  #fff7f3;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    button:disabled { cursor: not-allowed; opacity: .56; }
+    button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid #ce7898; outline-offset: 4px;
+    }
+    [hidden] { display: none !important; }
+    .container { width: min(1120px, calc(100% - 36px)); margin-inline: auto; }
+    .top {
+      background: var(--wine); color: #fff; position: relative; isolation: isolate; overflow: hidden;
+      padding: 16px 0 43px; border-radius: 0 0 34px 34px;
+    }
+    .top::before, .top::after {
+      content: "♡"; position: absolute; pointer-events: none; opacity: .07;
+      font-family: Georgia, serif; line-height: 1; z-index: -1;
+    }
+    .top::before { font-size: 450px; right: -90px; top: -250px; transform: rotate(-25deg); }
+    .top::after { font-size: 260px; left: -100px; bottom: -160px; transform: rotate(12deg); }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .brand { display: inline-flex; gap: 9px; align-items: center; font-size: .83rem; font-weight: 770; letter-spacing: .025em; }
+    .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; color: var(--wine);
+      background: #f4c4d1; border-radius: 11px; font-family: Georgia, serif; font-size: 1.35rem; }
+    .date-pill { font-size: .72rem; color: #f5cad8; border: 1px solid #97627d;
+      border-radius: 30px; padding: 6px 12px; white-space: nowrap; }
+    .hero { text-align: center; padding: 38px 0 2px; }
+    .overline { font-size: .7rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: #f3bdce; }
+    h1, h2, .serif { font-family: Georgia, "Times New Roman", serif; }
+    h1 { font-size: clamp(2.7rem, 7.6vw, 5rem); line-height: 1.04; letter-spacing: -.055em; margin: 14px 0 13px; font-weight: 500; }
+    h1 em { color: #f6afc8; font-weight: 400; }
+    .hero p { margin: 0 auto; max-width: 520px; color: #f5cfdb; font-size: .94rem; }
+    .names { margin-top: 20px; display: inline-flex; gap: 13px; align-items: center;
+      padding: 8px 18px; border-radius: 40px; border: 1px solid #85526c; background: #ffffff0c;
+      letter-spacing: .05em; font-size: .8rem; font-weight: 680; }
+    .names span { color: #f7adbf; font-size: 1.05rem; }
+    .main { padding-bottom: 60px; }
+    .dashboard { position: relative; margin-top: -20px; border-radius: 21px; background: var(--white);
+      box-shadow: 0 9px 26px #57294017; border: 1px solid #f4e9e8; padding: 17px 20px; display: grid;
+      grid-template-columns: 1fr auto; gap: 15px; align-items: center; }
+    .progress-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .progress-label { font-size: .8rem; font-weight: 740; color: var(--wine); }
+    #progress-text { font-size: .8rem; color: var(--muted); font-weight: 690; font-variant-numeric: tabular-nums; }
+    .progress-track { background: #f3e5e8; border-radius: 20px; height: 9px; overflow: hidden; margin-top: 9px; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #b74e76, #ea9eb6); border-radius: inherit;
+      transition: width .4s ease; }
+    .stats { text-align: center; min-width: 104px; border-left: 1px solid var(--line); padding-left: 18px; }
+    .stats strong { display: block; font-size: 1.25rem; font-weight: 820; line-height: 1.2; color: var(--wine); font-variant-numeric: tabular-nums; }
+    .stats span { font-size: .67rem; color: var(--muted); }
+    .tabs { display: flex; gap: 7px; padding: 5px; background: #f4e8e9; border-radius: 16px; margin: 26px 0 23px; width: fit-content; }
+    .tab { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0;
+      background: transparent; border-radius: 12px; color: #785d6b; padding: 10px 16px; font-size: .85rem; font-weight: 690; }
+    .tab[aria-selected="true"] { color: var(--wine); background: #fff; box-shadow: 0 3px 9px #4b20301b; }
+    .game-grid { display: grid; grid-template-columns: minmax(300px,.85fr) minmax(0,1.15fr); gap: 20px; align-items: stretch; }
+    .surface { border-radius: var(--radius); background: #fff; border: 1px solid #f0e3e3; box-shadow: var(--shadow); }
+    .wheel-card { padding: 26px 24px 25px; text-align: center; background: linear-gradient(165deg, #fffafc 8%, #fff1f3 100%); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase;
+      font-size: .69rem; letter-spacing: .14em; color: var(--rose-dark); font-weight: 850; }
+    .turn-line { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; font-size:.95rem; margin: 8px 0 20px; color: var(--wine); font-weight: 700; }
+    .turn-clause { display:inline-flex; gap:6px; align-items:center; white-space:nowrap; }
+    .turn-separator { color:var(--rose); padding:0 2px; }
+    .turn-person { display: inline-block; background: #f4d9e2; color: #7d3155; padding: 3px 10px; border-radius: 8px; }
+    .wheel-shell { width: min(263px,100%); margin: 0 auto; position: relative; aspect-ratio: 1; display: grid; place-items: center; }
+    .pointer { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); z-index: 5;
+      width: 0; height: 0; border-left: 11px solid transparent; border-right: 11px solid transparent;
+      border-top: 21px solid var(--wine); filter: drop-shadow(0 3px 2px #511f3940); }
+    .wheel-disc { width: 100%; height: 100%; border-radius: 50%; border: 10px solid #fffbfa;
+      outline: 2px solid #e6b5c4; box-shadow: 0 10px 22px #7e3b5827, inset 0 0 0 3px #ffffff85;
+      position: relative; background: repeating-conic-gradient(from -1.8deg,
+      #f2bbcc 0deg 3.6deg, #d7839e 3.6deg 7.2deg); transform: rotate(0deg);
+      will-change: transform; }
+    .wheel-disc::before { content: ""; position: absolute; inset: 14px; border-radius: 50%; border: 1px solid #ffffff99; pointer-events: none; }
+    .wheel-label { position: absolute; top: 50%; left: 50%; z-index: 1; font-size: 10px; line-height: 1;
+      color: #62304a; font-weight: 800; text-shadow: 0 1px #ffeff3; font-variant-numeric: tabular-nums; }
+    .wheel-hub { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle at 35% 24%,#fff 0,#fff4f6 90%);
+      box-shadow: 0 3px 17px #63274352; border: 6px solid #fffdfc; z-index: 3; }
+    .wheel-hub .small { font-size: .66rem; font-weight: 810; color: var(--rose-dark); letter-spacing: .11em; text-transform: uppercase; }
+    .wheel-hub .number { color: var(--wine); font-family: Georgia,serif; font-size: 3.4rem; font-weight: 600;
+      line-height: 1; font-variant-numeric: tabular-nums; margin: 4px 0; }
+    .wheel-hub .caption { color: #9b7b89; font-size: .68rem; }
+    .main-button { width: 100%; border: none; border-radius: 15px; padding: 15px 18px;
+      background: linear-gradient(115deg,#8d3159,#ae476d); box-shadow: 0 7px 16px #8d315936;
+      color: #fff; font-weight: 820; font-size: .97rem; letter-spacing: .015em;
+      margin-top: 29px; display: flex; justify-content: center; align-items: center; gap: 10px;
+      transition: transform .18s ease, box-shadow .18s ease; }
+    .main-button:not(:disabled):active { transform: scale(.98); box-shadow: 0 3px 8px #8d315936; }
+    .spin-help { color: var(--muted); font-size: .74rem; min-height: 18px; margin: 12px 0 0; }
+    .question-card { position: relative; display: flex; flex-direction: column; min-height: 498px; padding: 30px 32px 29px;
+      background: radial-gradient(circle at 100% 0%, #fff0f2 0%, transparent 45%), #fff; overflow: hidden; }
+    .question-card::before { content: "♡"; font-family: Georgia,serif; position:absolute; right:12px; bottom: -92px;
+      font-size: 330px; line-height: 1; color: #f4e0e8; opacity: .48; pointer-events:none; }
+    .question-content { position:relative; z-index:1; display:flex; flex-direction:column; flex:1; }
+    .question-meta { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    .question-tag { font-size: .77rem; font-weight: 760; color: var(--rose-dark); background: #fff0f4;
+      padding: 7px 11px; border-radius: 30px; }
+    .status-chip { font-size:.73rem; font-weight:750; color:#8b6473; }
+    .status-chip.done { color: var(--success); }
+    .respondent-caption { display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px; width:fit-content; margin:26px 0 0; padding:9px 13px; background:#fff1f5; border:1px solid #f3d7e0; border-radius:12px; color:var(--rose-dark); font-size:.86rem; font-weight:680; }
+    .respondent-caption strong { color:var(--wine); font-weight:850; }
+    .question-number { margin-top: auto; color:var(--rose); font-size:.76rem; letter-spacing:.14em;
+      text-transform:uppercase; font-weight:820; }
+    .question-text { font-family: Georgia, "Times New Roman", serif; color:var(--wine); font-size:clamp(1.55rem,2.35vw,2.25rem);
+      line-height:1.33; letter-spacing:-.024em; font-weight:500; margin:14px 0 20px; overflow-wrap:break-word; }
+    .question-footer { margin-top:auto; padding-top:20px; border-top:1px solid #efdee5; }
+    .question-instruction { font-size:.8rem; color:var(--muted); margin:0 0 16px; }
+    .card-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .action { border: 1px solid #e9ced8; background: #fff; border-radius:12px; padding:12px 15px;
+      color:var(--wine); font-size:.83rem; font-weight:800; flex:1 1 auto; }
+    .action.primary { border-color:#a44167; background:#a44167; color:white; flex: 2 1 175px; }
+    .action:active { transform:scale(.985); }
+    .empty { text-align:center; margin:auto 0; padding:25px 12px; position:relative; z-index:1; }
+    .empty-icon { font-size:3.6rem; color:#cc7e9c; line-height:1; margin-bottom:22px; }
+    .empty h2 { color:var(--wine); font-size:clamp(1.65rem,3vw,2.25rem); line-height:1.23; font-weight:500; margin:0 0 13px; }
+    .empty p { max-width:320px; margin:0 auto; font-size:.87rem; color:var(--muted); }
+    .below-title { margin: 33px 0 7px; font-family: Georgia,serif; font-size:1.66rem; color:var(--wine); }
+    .below-copy { margin:0 0 17px; color:var(--muted); font-size:.85rem; }
+    .categories { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:11px; }
+    .cat { position:relative; display:flex; flex-direction:column; gap:8px; text-align:left;
+      border:1px solid #ead5dd; border-radius:18px; padding:15px 13px 12px;
+      background:#fff; cursor:pointer; transition: border-color .15s, background .15s, transform .15s; }
+    .cat:has(input:checked) { border-color:#ca85a0; background:#fff5f7; }
+    .cat:active { transform:scale(.99); }
+    .cat .cat-top { display:flex; justify-content:space-between; align-items:start; gap:6px; }
+    .cat-icon { font-size:1.35rem; line-height:1.3; }
+    .cat input { appearance:none; display:block; width:19px; height:19px; flex-shrink:0; border-radius:6px;
+      border:2px solid #c6a4b3; margin:1px 0 0; background:#fff; position:relative; cursor:pointer; }
+    .cat input:checked { background:var(--rose-dark); border-color:var(--rose-dark); }
+    .cat input:checked::before { content:'✓'; color:#fff; position:absolute; inset:0;
+      display:grid; place-items:center; font-size:12px; font-weight:900; line-height:1; }
+    .cat strong { font-size:.78rem; line-height:1.27; color:var(--wine); font-weight:800; }
+    .cat small { font-size:.69rem; color:var(--muted); margin-top:auto; }
+    .cat.cat-intimate { border-style:dashed; }
+    .privacy-note { font-size:.77rem; color:#8a6876; display:flex; gap:9px; align-items:start; margin:18px 0 0; }
+    .privacy-note span { font-size:1rem; line-height:1.25; }
+    .questions-head { display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .questions-head h2 { margin: 0 0 6px; font-size:1.8rem; color:var(--wine); font-weight:500; }
+    .questions-head p { margin:0; font-size:.84rem; color:var(--muted); }
+    .list-toolbar { display:flex; gap:10px; margin:21px 0 14px; flex-wrap:wrap; }
+    .search { border:1px solid #ead5dd; border-radius:13px; background:white; padding:11px 15px;
+      flex:1 1 240px; width:100%; min-width:0; color:var(--wine); font-size:.87rem; }
+    .filters { display:flex; gap:5px; padding:5px; border:1px solid #ecdce2; border-radius:14px;
+      background: #fffcfd; }
+    .filter { border:0; background:transparent; color:#8d6878; padding:7px 11px; border-radius:9px;
+      font-size:.75rem; font-weight:760; }
+    .filter.active { background:#f1dce5; color:var(--wine); }
+    .show-disabled { display:inline-flex; align-items:center; gap:8px; margin:0 0 16px; color:var(--muted);
+      font-size:.78rem; cursor:pointer; }
+    .show-disabled input { width:16px; height:16px; accent-color:var(--rose-dark); }
+    .question-list { display:grid; gap:9px; }
+    .question-row { display:grid; grid-template-columns:auto 1fr; align-items:start; gap:12px; background:#fff;
+      border:1px solid #eddde3; border-radius:17px; padding:15px; }
+    .question-row.done { background:#fffdfd; opacity:.77; }
+    .question-row input[type="checkbox"] { appearance:none; width:23px; height:23px; border:2px solid #ca9eb0;
+      border-radius:7px; margin:3px 0 0; cursor:pointer; position:relative; }
+    .question-row input[type="checkbox"]:checked { background:var(--success); border-color:var(--success); }
+    .question-row input[type="checkbox"]:checked::after { content:'✓'; position:absolute; inset:0; color:#fff;
+      display:grid; place-items:center; font-weight:850; font-size:15px; line-height:1; }
+    .row-top { color:#a75e7c; font-size:.72rem; font-weight:760; margin-bottom:4px; }
+    .question-row.done .row-text { text-decoration:line-through; text-decoration-color:#b9a2ad; }
+    .row-text { font-size:.88rem; margin:0; color:#493842; line-height:1.53; }
+    .no-results { background:white; padding:29px; border-radius:17px; border:1px solid var(--line);
+      text-align:center; color:var(--muted); font-size:.9rem; }
+    .bottom { margin-top:46px; border-top:1px solid #ebd7dd; display:flex; align-items:center;
+      justify-content:space-between; gap:14px; padding:24px 0 10px; flex-wrap:wrap; }
+    .bottom p { color:#997786; margin:0; font-size:.77rem; }
+    .reset { background:transparent; border:1px solid #d8bbc7; color:var(--wine-2);
+      padding:9px 13px; font-size:.76rem; font-weight:750; border-radius:11px; }
+    .toast { position:fixed; z-index:100; bottom: max(25px, env(safe-area-inset-bottom)); left:50%;
+      transform:translate(-50%,12px); background:var(--wine); color:#fff; padding:12px 20px;
+      box-shadow:0 14px 30px #37132238; border-radius:13px; font-size:.81rem; font-weight:650;
+      max-width:min(420px,calc(100vw - 35px)); text-align:center; opacity:0;
+      pointer-events:none; transition:opacity .25s, transform .25s; }
+    .toast.visible { opacity:1; transform:translate(-50%,0); }
+    dialog { border:1px solid #ead5df; border-radius:22px; width:min(430px,calc(100% - 30px));
+      padding:27px; color:var(--wine); box-shadow:0 25px 70px #270b1f4f; }
+    dialog::backdrop { background:#2e1027a1; backdrop-filter:blur(3px); }
+    dialog h2 { font-size:1.8rem; margin:0 0 11px; font-weight:500; }
+    dialog p { font-size:.86rem; color:var(--muted); margin:0 0 24px; }
+    .dialog-actions { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:9px; }
+    .dialog-actions button { padding:10px 15px; border-radius:11px; border:1px solid var(--line);
+      background:#fff; color:var(--wine); font-size:.86rem; font-weight:800; }
+    .dialog-actions .danger { background:#a53b64; color:#fff; border-color:#a53b64; }
+    .heart-burst { position:fixed; z-index:90; color:#c4557c; pointer-events:none;
+      font-size:22px; animation: float-heart 1.25s ease-out forwards; }
+    @keyframes float-heart { from { opacity:1; transform:translate(-50%,-50%) scale(.7); }
+      to { opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.6) rotate(35deg); } }
+    @media (max-width:950px) { .categories { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:700px) {
+      .container { width: min(100% - 28px, 540px); }
+      .top { padding-bottom:43px; border-radius:0 0 25px 25px; }
+      .hero { padding-top:30px; }
+      .hero p { font-size:.82rem; }
+      .date-pill { font-size:.64rem; padding:5px 9px; }
+      .game-grid { grid-template-columns:1fr; gap:14px; }
+      .wheel-card { padding:24px 18px 22px; }
+      .wheel-shell { width:211px; }
+      .wheel-label { font-size:9px; }
+      .wheel-hub { width:110px; height:110px; }
+      .wheel-hub .number { font-size:2.9rem; }
+      .main-button { margin-top:22px; }
+      .question-card { min-height:360px; padding:23px 22px; }
+      .question-text { font-size:clamp(1.6rem,5.7vw,2.05rem); margin-top:13px; }
+      .categories { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .tabs { width:100%; }
+      .tab { flex:1; }
+      .dashboard { padding:15px 14px; }
+      .stats { min-width:80px; padding-left:13px; }
+      .cat { min-height:114px; }
+    }
+    @media (max-width:365px) {
+      .date-pill { display:none; }
+      .dashboard { grid-template-columns:1fr; }
+      .stats { display:none; }
+      .card-actions { flex-direction:column; }
+      .cat { padding:12px 10px; }
+      .question-card { padding:21px 17px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <div class="topbar">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">♡</span> JULIO <span aria-hidden="true">&amp;</span> NAZA</div>
+        <div class="date-pill">Desde el 15 de marzo de 2026 ♡</div>
+      </div>
+      <div class="hero">
+        <div class="overline">100 preguntas · un solo amor</div>
+        <h1>Verdad <em>o</em> verdad<span aria-hidden="true">.</span></h1>
+        <p>Una pregunta para uno de los dos, un turno a la vez. Para escuchar, recordar y seguir descubriéndonos.</p>
+        <div class="names">Julio <span aria-hidden="true">♥</span> Naza</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main container">
+    <section class="dashboard" aria-label="Progreso de la partida">
+      <div>
+        <div class="progress-line"><span class="progress-label">Nuestra historia, una pregunta a la vez</span>
+          <span id="progress-text">0/100</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Preguntas completadas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="stats"><strong id="remaining-count">100</strong><span>sin responder</span></div>
+    </section>
+
+    <nav class="tabs" aria-label="Secciones del juego">
+      <button class="tab" type="button" id="tab-game" data-view="game" aria-selected="true">♡ <span>Jugar</span></button>
+      <button class="tab" type="button" id="tab-questions" data-view="questions" aria-selected="false">☷ <span>100 preguntas</span></button>
+    </nav>
+
+    <div id="view-game">
+      <div class="game-grid">
+        <section class="surface wheel-card" aria-label="Ruleta de preguntas">
+          <span class="eyebrow">✦ Es nuestro turno ✦</span>
+          <div class="turn-line" id="turn-line">Julio pregunta <span class="turn-separator">·</span> Naza responde</div>
+          <div class="wheel-shell" aria-label="Ruleta con 100 segmentos numerados del 1 al 100">
+            <div class="pointer" aria-hidden="true"></div>
+            <div class="wheel-disc" id="wheel-disc" aria-hidden="true"></div>
+            <div class="wheel-hub" aria-hidden="true">
+              <span class="small">Número</span><span class="number" id="wheel-number">?</span>
+              <span class="caption">de 1 a 100</span>
+            </div>
+          </div>
+          <button type="button" class="main-button" id="spin-button">♥ <span id="spin-button-label">Girar la ruleta</span></button>
+          <p class="spin-help" id="spin-help">Solo participan preguntas de las categorías activadas.</p>
+        </section>
+
+        <section class="surface question-card" id="question-card" aria-label="Pregunta seleccionada" aria-live="polite" aria-atomic="true">
+          <div class="empty" id="empty-card">
+            <div class="empty-icon" aria-hidden="true">♡</div>
+            <h2>Las mejores conversaciones empiezan con una pregunta.</h2>
+            <p>En cada turno, uno pregunta y el otro responde. No hay respuestas incorrectas ni obligación de contestar.</p>
+          </div>
+          <div class="question-content" id="active-card" hidden>
+            <div class="question-meta">
+              <span class="question-tag" id="active-category"></span>
+              <span class="status-chip" id="active-status">Pendiente</span>
+            </div>
+            <p class="respondent-caption" id="respondent-caption">💌 Esta pregunta es para <strong id="respondent-name">Naza</strong></p>
+            <div class="question-number" id="active-number">PREGUNTA 01 / 100</div>
+            <h2 class="question-text" id="active-text"></h2>
+            <div class="question-footer">
+              <p class="question-instruction" id="active-instruction">Julio pregunta; Naza responde, sin prisa y sin presiones.</p>
+              <div class="card-actions">
+                <button type="button" class="action primary" id="complete-button">♥ Naza ya respondió</button>
+                <button type="button" class="action" id="skip-button">Saltar por ahora</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section aria-labelledby="categories-heading">
+        <h2 id="categories-heading" class="below-title">Elijan de qué hablar ♡</h2>
+        <p class="below-copy">Activen los temas que les apetezcan. Las preguntas desactivadas nunca salen en la ruleta.</p>
+        <div class="categories" id="categories"></div>
+        <p class="privacy-note"><span aria-hidden="true">🔒</span> Las preguntas íntimas empiezan desactivadas. Cualquiera puede saltar una pregunta, sin dar explicaciones. Saltar no cuenta como responder ni cambia el turno.</p>
+      </section>
+    </div>
+
+    <section id="view-questions" hidden aria-labelledby="questions-heading">
+      <div class="questions-head">
+        <div><h2 id="questions-heading">Todas nuestras preguntas ♡</h2>
+          <p>Marcá cada pregunta cuando quien recibió el turno haya respondido. Una sola respuesta la completa y guarda el progreso automáticamente.</p></div>
+        <span class="eyebrow" id="list-summary">100 preguntas</span>
+      </div>
+      <div class="list-toolbar">
+        <input type="search" class="search" id="question-search" placeholder="Buscar por número, palabra o tema…" aria-label="Buscar preguntas" autocomplete="off" />
+        <div class="filters" role="group" aria-label="Filtrar por estado">
+          <button type="button" class="filter active" data-filter="all" aria-pressed="true">Todas</button>
+          <button type="button" class="filter" data-filter="pending" aria-pressed="false">Pendientes</button>
+          <button type="button" class="filter" data-filter="done" aria-pressed="false">Completadas</button>
+        </div>
+      </div>
+      <label class="show-disabled"><input type="checkbox" id="show-disabled" /> Mostrar también preguntas de categorías desactivadas</label>
+      <div class="question-list" id="question-list"></div>
+    </section>
+
+    <footer class="bottom">
+      <p>Hecho para Julio y Naza, con cariño ♡<br />El progreso queda guardado solo en este navegador y dispositivo.</p>
+      <button class="reset" type="button" id="reset-button">↺ Reiniciar partida</button>
+    </footer>
+  </main>
+
+  <dialog id="reset-dialog" aria-labelledby="reset-heading">
+    <h2 id="reset-heading">¿Empezamos de nuevo? ♡</h2>
+    <p>Se borrarán las preguntas completadas y el turno actual. Esta acción no se puede deshacer.</p>
+    <div class="dialog-actions">
+      <button type="button" id="reset-cancel">Conservar progreso</button>
+      <button type="button" id="reset-confirm" class="danger">Sí, reiniciar todo</button>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  'use strict';
+  const QUESTIONS = [{"id":1,"category":1,"text":"¿En qué momento de nuestra relación sentiste que lo que tenías conmigo era algo verdaderamente especial?"},{"id":2,"category":1,"text":"¿Qué es lo que más te enamora de mí hoy, que quizás no conocías cuando empezamos a ser novios?"},{"id":3,"category":1,"text":"Cuando me decís «te amo», ¿qué sentimientos pasan por tu corazón que esas dos palabras no alcanzan a expresar?"},{"id":4,"category":1,"text":"¿Cuál de mis maneras de demostrarte amor te hace sentir más querida y especial?"},{"id":5,"category":1,"text":"¿En qué momento conmigo has sentido que podés ser completamente vos, sin miedo a que te juzgue?"},{"id":6,"category":1,"text":"Si tuvieras que explicarle a alguien cómo se siente nuestro amor, sin describir cómo soy físicamente, ¿qué le dirías?"},{"id":7,"category":1,"text":"¿Qué cosa de nuestra relación te hace pensar que valió la pena que nuestros caminos se encontraran?"},{"id":8,"category":1,"text":"¿Qué sentimiento bonito has descubierto conmigo que antes no habías experimentado de esta manera?"},{"id":9,"category":1,"text":"¿Qué hago, incluso sin darme cuenta, que te recuerda que sos una persona muy importante en mi vida?"},{"id":10,"category":1,"text":"Si esta noche pudieras decirme algo desde lo más profundo de tu corazón, sin vergüenza ni miedo a ponerte sentimental, ¿qué me dirías?"},{"id":11,"category":2,"text":"¿En qué momentos del día me extrañás más y qué es lo primero que se te viene a la mente?"},{"id":12,"category":2,"text":"Cuando estamos separados y pensás en mí, ¿qué recuerdo nuestro te hace sonreír inmediatamente?"},{"id":13,"category":2,"text":"¿Qué es lo que más extrañás de tenerme físicamente a tu lado: mis abrazos, mis besos, mi voz, mi manera de molestarte cariñosamente o alguna otra cosa?"},{"id":14,"category":2,"text":"Cuando vemos nuestras fotos juntos, ¿qué es lo primero que sentís?"},{"id":15,"category":2,"text":"¿Qué te imaginás que vamos a hacer en los primeros cinco minutos cuando volvamos a vernos?"},{"id":16,"category":2,"text":"Si ahorita apareciera a tu lado y pudiéramos pasar una hora juntos, ¿cómo te gustaría que aprovecháramos ese tiempo?"},{"id":17,"category":2,"text":"¿Cuál es el abrazo nuestro que más recordás y qué lo hizo tan especial?"},{"id":18,"category":2,"text":"¿Hay alguna cosa que quisieras que hiciéramos más seguido cuando estamos juntos porque la extrañás cuando no nos vemos?"},{"id":19,"category":2,"text":"Cuando te acostás a dormir y te hago falta, ¿qué te gustaría que pudiera decirte al oído?"},{"id":20,"category":2,"text":"Si mañana tuviéramos un día entero para nosotros, sin trabajo, estudios ni compromisos, ¿cómo sería tu día perfecto conmigo desde que despertamos hasta que nos dormimos?"},{"id":21,"category":3,"text":"¿Cuál fue tu primera impresión de mí y en qué momento empezó a cambiar hacia algo más romántico?"},{"id":22,"category":3,"text":"¿Qué recordás del 15 de marzo, cuando comenzó oficialmente nuestra historia?"},{"id":23,"category":3,"text":"¿Cuál fue el primer momento en que pensaste «me estoy enamorando muchísimo de este hombre»?"},{"id":24,"category":3,"text":"De todos los besos que nos hemos dado, ¿hay alguno que recordés de manera especialmente bonita? ¿Por qué?"},{"id":25,"category":3,"text":"¿Qué sentís cuando ves nuestra primera foto juntos, esa que tenés en tu mesa de noche?"},{"id":26,"category":3,"text":"De todos nuestros aniversarios y detalles, ¿cuál te ha hecho sentir más emocionada y querida?"},{"id":27,"category":3,"text":"¿Qué sentiste cuando leíste las cartas de nuestros seis meses y recordaste todo lo que hemos vivido?"},{"id":28,"category":3,"text":"¿Cuál ha sido nuestro momento más gracioso, de esos que recordás y todavía te dan ganas de reírte?"},{"id":29,"category":3,"text":"Si pudiéramos regresar a vivir exactamente igual un solo día de nuestra relación, ¿cuál elegirías?"},{"id":30,"category":3,"text":"Si nuestra historia fuera una película romántica, ¿qué tres escenas nuestras definitivamente tendrían que aparecer?"},{"id":31,"category":4,"text":"¿Qué cosa que he hecho por vos te gustaría agradecerme y quizás nunca has encontrado el momento de decírmelo?"},{"id":32,"category":4,"text":"¿Cuál de mis pequeños detalles cotidianos valorás más, aunque para mí parezca algo sencillo?"},{"id":33,"category":4,"text":"¿De qué manera sentís que tu vida ha cambiado positivamente desde que estamos juntos?"},{"id":34,"category":4,"text":"¿Qué momento difícil se te hizo más llevadero porque sabías que me tenías a tu lado?"},{"id":35,"category":4,"text":"¿Qué has aprendido del amor gracias a nuestra relación?"},{"id":36,"category":4,"text":"¿Qué gesto mío te ha hecho sentir cuidada, protegida emocionalmente o acompañada cuando lo necesitabas?"},{"id":37,"category":4,"text":"¿Qué cualidad de nuestra relación agradecés tener y no quisieras que perdiéramos con el tiempo?"},{"id":38,"category":4,"text":"¿Hay algo que hago por nuestra relación que creés que debería saber cuánto significa para vos?"},{"id":39,"category":4,"text":"¿Qué experiencia bonita hemos podido vivir juntos que te hace sentir agradecida por habernos conocido?"},{"id":40,"category":4,"text":"Si hoy tuviéramos que decirnos tres cosas específicas por las que estamos agradecidos el uno con el otro, ¿cuáles elegirías?"},{"id":41,"category":5,"text":"¿Qué cualidad de mi personalidad admirás más y por qué?"},{"id":42,"category":5,"text":"¿Qué es algo que has visto en mí que te hace sentir orgullosa de tenerme como pareja?"},{"id":43,"category":5,"text":"¿Hay alguna manera en la que enfrento los problemas o las responsabilidades que te inspire?"},{"id":44,"category":5,"text":"¿Qué parte de mi personalidad creés que las demás personas no conocen tan bien como vos?"},{"id":45,"category":5,"text":"¿Cuál es una fortaleza mía que quizás yo mismo no reconozco lo suficiente?"},{"id":46,"category":5,"text":"¿Qué cosa que he conseguido o que estoy intentando conseguir te genera admiración?"},{"id":47,"category":5,"text":"¿Qué rasgo de mi manera de amar te gustaría que conserváramos incluso cuando llevemos muchos años juntos?"},{"id":48,"category":5,"text":"¿Qué cualidad tuya sentís que ha crecido desde que estamos en esta relación y te hace sentir orgullosa de vos misma?"},{"id":49,"category":5,"text":"¿Qué creés que tenemos cada uno como personas que hace que formemos un buen equipo?"},{"id":50,"category":5,"text":"Si dentro de muchos años alguien te preguntara qué admirás de la persona con la que elegiste compartir tu vida, ¿qué te gustaría poder responder?"},{"id":51,"category":6,"text":"¿Qué sueño personal tenés en tu corazón que todavía no hemos conversado lo suficiente?"},{"id":52,"category":6,"text":"¿Qué aspecto de tu infancia te gustaría que yo comprendiera mejor para conocer a la persona que sos hoy?"},{"id":53,"category":6,"text":"¿Qué cosas pequeñas te hacen feliz incluso cuando has tenido un día complicado?"},{"id":54,"category":6,"text":"¿Cuál es una preocupación que estás viviendo actualmente y en la que te gustaría sentir más mi acompañamiento?"},{"id":55,"category":6,"text":"¿Qué parte de vos sentís que pocas personas conocen, pero te gustaría que yo llegara a comprender?"},{"id":56,"category":6,"text":"¿Qué necesitás emocionalmente cuando estás triste: palabras bonitas, abrazos, compañía, soluciones o simplemente que te escuche?"},{"id":57,"category":6,"text":"¿Qué es algo que te da miedo del futuro, aunque tengás mucha ilusión por todo lo que viene?"},{"id":58,"category":6,"text":"¿Qué experiencia de tu vida te ha enseñado una lección que quisieras compartir conmigo?"},{"id":59,"category":6,"text":"¿Qué sueño te gustaría cumplir por vos misma y cómo podría apoyarte sin quitarte tu independencia?"},{"id":60,"category":6,"text":"¿Qué te gustaría que siguiera descubriendo de vos, incluso después de llevar muchos años juntos?"},{"id":61,"category":7,"text":"¿En qué momentos conmigo sentís mayor tranquilidad emocional, como si pudieras bajar la guardia y simplemente ser vos?"},{"id":62,"category":7,"text":"¿Qué puedo hacer cuando nos extrañamos para que sintás mi cariño sin que ninguno tenga que descuidar sus responsabilidades?"},{"id":63,"category":7,"text":"¿Hay alguna inseguridad personal que te gustaría que yo comprendiera mejor para acompañarte con más sensibilidad?"},{"id":64,"category":7,"text":"¿Qué significa para vos sentirte emocionalmente segura en una relación?"},{"id":65,"category":7,"text":"Cuando tenemos un malentendido, ¿qué actitud mía te ayuda más a sentir que seguimos siendo un equipo?"},{"id":66,"category":7,"text":"¿Qué te gustaría que siempre recordáramos sobre nuestro amor incluso cuando estemos molestos o tengamos opiniones diferentes?"},{"id":67,"category":7,"text":"¿Hay alguna necesidad emocional tuya que te cueste expresar por miedo a sentir que estás pidiendo demasiado?"},{"id":68,"category":7,"text":"¿Qué significa para vos que alguien te elija y te siga eligiendo incluso en los días difíciles?"},{"id":69,"category":7,"text":"¿Qué aspecto de nuestra comunicación sentís que hemos mejorado y cuál te gustaría que sigamos construyendo juntos?"},{"id":70,"category":7,"text":"¿Qué promesa emocional realista te gustaría que nos hiciéramos, no para ser una pareja perfecta, sino para cuidarnos cuando las cosas no sean fáciles?"},{"id":71,"category":8,"text":"Cuando te imaginás nuestra vida dentro de cinco años, ¿qué es lo primero que visualizás?"},{"id":72,"category":8,"text":"¿Cómo te imaginás una mañana cualquiera en nuestra casa cuando ya estemos casados?"},{"id":73,"category":8,"text":"¿Qué es lo que más ilusión te provoca de la posibilidad de convertirnos algún día en esposos?"},{"id":74,"category":8,"text":"¿Qué tradiciones románticas te gustaría que tuviéramos en nuestro matrimonio, incluso después de muchos años?"},{"id":75,"category":8,"text":"¿Cómo te gustaría que organicemos nuestros sueños económicos para ahorrar y construir algo juntos, sin dejar de disfrutar nuestro noviazgo?"},{"id":76,"category":8,"text":"¿Qué tipo de hogar te gustaría que construyéramos, no solamente por su apariencia, sino por cómo nos sentiríamos viviendo ahí?"},{"id":77,"category":8,"text":"¿Cómo imaginás que podríamos apoyarnos mutuamente con nuestras carreras, mi trabajo y tus metas en Derecho?"},{"id":78,"category":8,"text":"¿Qué aventuras, viajes o experiencias te gustaría que viviéramos antes de casarnos?"},{"id":79,"category":8,"text":"Si algún día decidimos formar una familia, ¿qué valores y enseñanzas te gustaría que caracterizaran nuestro hogar?"},{"id":80,"category":8,"text":"Cuando seamos viejitos y recordemos toda nuestra historia, ¿qué te gustaría que pudiéramos decir sobre la manera en que nos amamos y construimos nuestra vida?"},{"id":81,"category":9,"text":"¿Qué es lo que más te atrae físicamente de mí y qué detalle de mi apariencia te encanta especialmente?"},{"id":82,"category":9,"text":"¿Qué tipo de beso mío te gusta más y en qué momentos te dan más ganas de besarme?"},{"id":83,"category":9,"text":"¿Qué cosas que hago, incluso sin intención, despiertan más tu atracción hacia mí?"},{"id":84,"category":9,"text":"¿Cuál ha sido uno de nuestros momentos más apasionados que recordás con especial emoción?"},{"id":85,"category":9,"text":"¿Qué tipo de caricias, abrazos o muestras de afecto te hacen sentir más deseada?"},{"id":86,"category":9,"text":"¿Hay alguna fantasía romántica o sexual que te genere curiosidad y que te gustaría contarme, aunque solamente quedara en nuestra imaginación?"},{"id":87,"category":9,"text":"Si pudiéramos organizar una noche completamente romántica, privada y sin interrupciones, ¿cómo te gustaría que empezara y qué ambiente crearíamos?"},{"id":88,"category":9,"text":"¿Qué te gusta más del coqueteo entre nosotros y qué podríamos hacer para mantener viva esa emoción con los años?"},{"id":89,"category":9,"text":"¿Qué cosas te hacen sentir cómoda y segura al hablar de tus deseos, y qué límites te gustaría que siempre respetemos?"},{"id":90,"category":9,"text":"¿Qué te gustaría que descubriéramos juntos sobre nuestra intimidad para disfrutarla con más confianza, comunicación y complicidad?"},{"id":91,"category":10,"text":"¿Qué es lo más bonito de que, además de ser novios, también podamos ser mejores amigos y compañeros de tantas cosas?"},{"id":92,"category":10,"text":"¿Qué parte de nuestras bromas, juegos, actuaciones improvisadas y maneras de molestarnos cariñosamente te encanta más?"},{"id":93,"category":10,"text":"Si pudiéramos crear una tradición solamente nuestra, que nadie más entendiera y que mantuviéramos durante años, ¿cuál sería?"},{"id":94,"category":10,"text":"¿Qué cosas nuevas te gustaría que probáramos juntos, como actividades, aventuras, pasatiempos o experiencias que todavía no hemos vivido?"},{"id":95,"category":10,"text":"Cuando entrenamos juntos, salimos a comer o simplemente pasamos tiempo acompañándonos, ¿qué sentís que nos hace disfrutar tanto de estar en compañía del otro?"},{"id":96,"category":10,"text":"Si pudiéramos escribir una carta para nosotros mismos y abrirla dentro de diez años, ¿qué te gustaría que dijera sobre nuestro amor actual y nuestros sueños?"},{"id":97,"category":10,"text":"¿Qué deberíamos seguir haciendo intencionalmente para que nuestra relación conserve la ternura, las risas, los besos y la emoción de nuestros primeros meses?"},{"id":98,"category":10,"text":"Si mañana nos despertáramos y tuviéramos la oportunidad de volver a empezar nuestra historia desde el día en que nos conocimos, sabiendo todo lo que sabemos hoy, ¿qué momentos volverías a elegir vivir conmigo?"},{"id":99,"category":10,"text":"¿Qué es algo que todavía no me has dicho sobre lo que significo en tu vida y que te gustaría que supiera esta noche?"},{"id":100,"category":10,"text":"Si la vida nos permite pasar muchísimos años juntos, ¿qué te gustaría que nunca cambiara de nuestra manera de amarnos, y qué podemos hacer desde hoy para cuidar ese amor?"}];
+  const CATEGORIES = [{"id":1,"emoji":"❤️","title":"Expresar amor"},{"id":2,"emoji":"🥹","title":"Cuando nos extrañamos"},{"id":3,"emoji":"📸","title":"Recordar nuestra historia"},{"id":4,"emoji":"💝","title":"Expresar gratitud"},{"id":5,"emoji":"✨","title":"Expresar admiración"},{"id":6,"emoji":"🫂","title":"Conocernos más profundamente"},{"id":7,"emoji":"💞","title":"Intimidad emocional"},{"id":8,"emoji":"💍","title":"Planes a futuro"},{"id":9,"emoji":"🔥","title":"Deseo, atracción y fantasías sexuales"},{"id":10,"emoji":"💗","title":"Nuestra complicidad"}];
+  const STORAGE_KEY = 'verdad_o_verdad_julio_naza_v1';
+  const DEFAULT_CATEGORIES = CATEGORIES.filter(category => category.id !== 9).map(category => category.id);
+  const byId = id => document.getElementById(id);
+  const questionById = new Map(QUESTIONS.map(q => [q.id, q]));
+  const categoryById = new Map(CATEGORIES.map(c => [c.id, c]));
+  const prefersLessMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  const newState = () => ({ completed: [], enabledCategories: [...DEFAULT_CATEGORIES],
+    activeId: null, activeAsker: null, nextAsker: 'Julio', lastSkippedId: null });
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return newState();
+      const obj = JSON.parse(raw);
+      if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return newState();
+      const clean = newState();
+      if (Array.isArray(obj.completed)) clean.completed = [...new Set(obj.completed.filter(id => Number.isInteger(id) && questionById.has(id)))];
+      if (Array.isArray(obj.enabledCategories)) clean.enabledCategories = [...new Set(obj.enabledCategories.filter(id => Number.isInteger(id) && categoryById.has(id)))];
+      if (questionById.has(obj.activeId)) clean.activeId = obj.activeId;
+      if (obj.activeAsker === 'Julio' || obj.activeAsker === 'Naza') clean.activeAsker = obj.activeAsker;
+      if (obj.nextAsker === 'Julio' || obj.nextAsker === 'Naza') clean.nextAsker = obj.nextAsker;
+      if (questionById.has(obj.lastSkippedId)) clean.lastSkippedId = obj.lastSkippedId;
+      if (!clean.activeId) clean.activeAsker = null;
+      else clean.activeAsker ||= clean.nextAsker;
+      return clean;
+    } catch (error) {
+      console.warn('No se pudo leer el progreso guardado:', error);
+      return newState();
+    }
+  }
+
+  let state = loadState();
+  let spinning = false;
+  let rotation = state.activeId ? (360 - (state.activeId - 1) * 3.6) % 360 : 0;
+  let currentView = 'game';
+  let listFilter = 'all';
+  let toastTimeout;
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); return true; }
+    catch (error) { console.warn('No se pudo guardar el progreso:', error); showToast('Tu navegador no permite guardar el progreso.'); return false; }
+  }
+  function randomBelow(max) {
+    if (!Number.isInteger(max) || max <= 0) throw new RangeError('El tamaño de la selección debe ser positivo.');
+    if (window.crypto?.getRandomValues) {
+      const bound = Math.floor(4294967296 / max) * max;
+      const arr = new Uint32Array(1);
+      let value;
+      do { crypto.getRandomValues(arr); value = arr[0]; } while (value >= bound);
+      return value % max;
+    }
+    return Math.floor(Math.random() * max);
+  }
+  const completedSet = () => new Set(state.completed);
+  const isComplete = id => state.completed.includes(id);
+  const otherAsker = name => name === 'Julio' ? 'Naza' : 'Julio';
+  const activeQuestion = () => questionById.get(state.activeId) || null;
+  const eligibleQuestions = () => QUESTIONS.filter(q => state.enabledCategories.includes(q.category) && !isComplete(q.id));
+
+  function showToast(message) {
+    const toast = byId('toast');
+    toast.textContent = message;
+    toast.classList.add('visible');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => toast.classList.remove('visible'), 3200);
+  }
+
+  function makeWheelLabels() {
+    const disc = byId('wheel-disc');
+    for (let number = 10; number <= 100; number += 10) {
+      const angle = (number - 1) * 3.6;
+      const label = document.createElement('span');
+      label.className = 'wheel-label';
+      label.textContent = number;
+      label.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-94px) rotate(${-angle}deg)`;
+      disc.append(label);
+    }
+    disc.style.transform = `rotate(${rotation}deg)`;
+  }
+
+  function renderProgress() {
+    const done = state.completed.length;
+    const eligible = eligibleQuestions().length;
+    byId('progress-text').textContent = `${done}/100 preguntas completadas`;
+    byId('progress-fill').style.width = `${done}%`;
+    byId('progress-bar').setAttribute('aria-valuenow', String(done));
+    byId('remaining-count').textContent = String(100 - done);
+    byId('spin-help').textContent = spinning ? 'Eligiendo una pregunta para el siguiente turno…'
+      : state.activeId && !isComplete(state.activeId) ? 'Quien tiene el turno responde, o pueden saltar antes de girar de nuevo.'
+      : eligible === 0 ? (done === 100 ? '¡Ya respondieron las 100 preguntas! ♡' : 'No quedan preguntas pendientes en los temas activos.')
+      : `${eligible} ${eligible === 1 ? 'pregunta disponible' : 'preguntas disponibles'} en los temas activos.`;
+  }
+
+  function renderWheelAndActive() {
+    const question = activeQuestion();
+    const finished = question && isComplete(question.id);
+    const turn = question && !finished ? state.activeAsker : state.nextAsker;
+    const responder = otherAsker(turn);
+    const turnClause = (name, role) => {
+      const clause = document.createElement('span');
+      clause.className = 'turn-clause';
+      const person = document.createElement('span');
+      person.className = 'turn-person';
+      person.textContent = name;
+      clause.append(person, document.createTextNode(role));
+      return clause;
+    };
+    const separator = document.createElement('span');
+    separator.className = 'turn-separator';
+    separator.textContent = '→';
+    separator.setAttribute('aria-hidden', 'true');
+    byId('turn-line').replaceChildren(turnClause(turn, 'pregunta'), separator, turnClause(responder, 'responde'));
+    const spinButton = byId('spin-button');
+    spinButton.disabled = spinning || (question && !finished) || eligibleQuestions().length === 0;
+    byId('spin-button-label').textContent = spinning ? 'Girando…'
+      : question && !finished ? 'Pregunta en conversación'
+      : question && finished ? 'Siguiente pregunta' : 'Girar la ruleta';
+    byId('empty-card').hidden = Boolean(question) && !spinning;
+    byId('active-card').hidden = !question || spinning;
+    if (spinning) {
+      byId('wheel-number').textContent = '··';
+      byId('empty-card').querySelector('h2').textContent = 'El destino está eligiendo…';
+      byId('empty-card').querySelector('p').textContent = 'Una pregunta al azar, una nueva historia por contar.';
+      return;
+    }
+    if (!question) {
+      byId('wheel-number').textContent = '?';
+      byId('empty-card').querySelector('h2').textContent = 'Las mejores conversaciones empiezan con una pregunta.';
+      byId('empty-card').querySelector('p').textContent = 'En cada turno, uno pregunta y el otro responde. No hay respuestas incorrectas ni obligación de contestar.';
+      return;
+    }
+    if (!spinning) byId('wheel-number').textContent = String(question.id).padStart(2, '0');
+    byId('active-category').textContent = `${categoryById.get(question.category).emoji} ${categoryById.get(question.category).title}`;
+    const activeResponder = otherAsker(state.activeAsker);
+    byId('active-status').textContent = finished ? '✓ Completada' : `${activeResponder} responde`;
+    byId('respondent-name').textContent = activeResponder;
+    byId('respondent-caption').firstChild.textContent = finished ? '💌 Respondió ' : '💌 Esta pregunta es para ';
+    byId('active-status').classList.toggle('done', Boolean(finished));
+    byId('active-number').textContent = `PREGUNTA ${String(question.id).padStart(2, '0')} / 100`;
+    byId('active-text').textContent = question.text;
+    byId('active-instruction').textContent = finished
+      ? 'Qué bonito haber compartido esta respuesta. Ya pueden girar otra vez. ♡'
+      : `${state.activeAsker} pregunta y ${activeResponder} responde. Solo responde ${activeResponder}, con calma y sin presiones.`;
+    byId('complete-button').textContent = `♥ ${activeResponder} ya respondió`;
+    byId('complete-button').hidden = Boolean(finished);
+    byId('skip-button').hidden = Boolean(finished);
+    byId('complete-button').disabled = spinning;
+    byId('skip-button').disabled = spinning;
+  }
+
+  function renderCategories() {
+    const el = byId('categories');
+    el.replaceChildren();
+    for (const cat of CATEGORIES) {
+      const count = QUESTIONS.filter(q => q.category === cat.id && !isComplete(q.id)).length;
+      const label = document.createElement('label');
+      label.className = `cat${cat.id === 9 ? ' cat-intimate' : ''}`;
+      const top = document.createElement('span'); top.className = 'cat-top';
+      const icon = document.createElement('span'); icon.className = 'cat-icon'; icon.textContent = cat.emoji;
+      const input = document.createElement('input');
+      input.type = 'checkbox'; input.value = String(cat.id); input.checked = state.enabledCategories.includes(cat.id);
+      input.setAttribute('aria-label', `${cat.title}: ${count} preguntas pendientes`);
+      top.append(icon, input);
+      const title = document.createElement('strong'); title.textContent = cat.title;
+      const detail = document.createElement('small'); detail.textContent = `${count} ${count === 1 ? 'pendiente' : 'pendientes'}${cat.id === 9 ? ' · opcional' : ''}`;
+      label.append(top, title, detail);
+      el.append(label);
+    }
+  }
+
+  function renderQuestionList() {
+    const term = byId('question-search').value.trim().toLocaleLowerCase('es');
+    const visibleDisabled = byId('show-disabled').checked;
+    const filtered = QUESTIONS.filter(q => {
+      if (!visibleDisabled && !state.enabledCategories.includes(q.category)) return false;
+      if (listFilter === 'done' && !isComplete(q.id)) return false;
+      if (listFilter === 'pending' && isComplete(q.id)) return false;
+      if (!term) return true;
+      const category = categoryById.get(q.category);
+      return String(q.id).includes(term) || q.text.toLocaleLowerCase('es').includes(term) || category.title.toLocaleLowerCase('es').includes(term);
+    });
+    byId('list-summary').textContent = `${filtered.length} ${filtered.length === 1 ? 'pregunta' : 'preguntas'}`;
+    const list = byId('question-list');
+    const fragment = document.createDocumentFragment();
+    for (const q of filtered) {
+      const done = isComplete(q.id);
+      const row = document.createElement('div'); row.className = `question-row${done ? ' done' : ''}`;
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox'; checkbox.dataset.questionId = String(q.id); checkbox.checked = done;
+      checkbox.setAttribute('aria-label', `Marcar pregunta ${q.id} como ${done ? 'pendiente' : 'completada'}`);
+      const content = document.createElement('div');
+      const meta = document.createElement('div'); meta.className = 'row-top';
+      const cat = categoryById.get(q.category);
+      meta.textContent = `#${String(q.id).padStart(2, '0')} · ${cat.emoji} ${cat.title}`;
+      const p = document.createElement('p'); p.className = 'row-text'; p.textContent = q.text;
+      content.append(meta,p); row.append(checkbox,content); fragment.append(row);
+    }
+    if (filtered.length === 0) {
+      const empty = document.createElement('p'); empty.className = 'no-results';
+      empty.textContent = 'No encontramos preguntas con esos filtros. Probá otra búsqueda o activá más categorías.';
+      fragment.append(empty);
+    }
+    list.replaceChildren(fragment);
+  }
+
+  function renderAll() {
+    renderProgress(); renderWheelAndActive(); renderCategories();
+    if (currentView === 'questions') renderQuestionList();
+  }
+
+  function switchView(view) {
+    if (view !== 'game' && view !== 'questions') return;
+    currentView = view;
+    byId('view-game').hidden = view !== 'game';
+    byId('view-questions').hidden = view !== 'questions';
+    for (const tab of document.querySelectorAll('.tab'))
+      tab.setAttribute('aria-selected', String(tab.dataset.view === view));
+    if (view === 'questions') renderQuestionList();
+  }
+
+  function markQuestion(id, checked) {
+    const question = questionById.get(id);
+    if (!question || spinning) return;
+    const wasComplete = isComplete(id);
+    if (wasComplete === checked) return;
+    if (checked) {
+      state.completed = [...state.completed, id].sort((a,b) => a-b);
+      if (state.activeId === id) {
+        state.nextAsker = otherAsker(state.activeAsker);
+        celebrate();
+        showToast(`${otherAsker(state.activeAsker)} respondió. ¡Siguiente turno! ♡`);
+      }
+    } else {
+      state.completed = state.completed.filter(n => n !== id);
+      if (state.activeId === id) state.nextAsker = state.activeAsker;
+    }
+    saveState(); renderAll();
+  }
+
+  function celebrate() {
+    if (prefersLessMotion) return;
+    const origin = byId('question-card').getBoundingClientRect();
+    const x = origin.left + origin.width * .52;
+    const y = origin.top + Math.min(origin.height*.78, origin.height-45);
+    for (let i = 0; i < 9; i++) {
+      const heart = document.createElement('span'); heart.className = 'heart-burst'; heart.textContent = i % 3 === 0 ? '♡' : '♥';
+      heart.style.left = `${x}px`; heart.style.top = `${y}px`;
+      heart.style.setProperty('--dx', `${(randomBelow(260)-130)}px`);
+      heart.style.setProperty('--dy', `${-40-randomBelow(170)}px`);
+      document.body.append(heart);
+      setTimeout(() => heart.remove(), 1350);
+    }
+  }
+
+  function skipCurrent() {
+    if (spinning || !state.activeId || isComplete(state.activeId)) return;
+    state.lastSkippedId = state.activeId;
+    state.activeId = null;
+    state.activeAsker = null;
+    saveState(); renderAll();
+    showToast('La pregunta sigue pendiente. Pueden volver a girar.');
+  }
+
+  function spin() {
+    if (spinning) return;
+    if (state.activeId && !isComplete(state.activeId)) {
+      byId('question-card').scrollIntoView({behavior:prefersLessMotion?'auto':'smooth', block:'nearest'});
+      showToast('Primero completen o salten la pregunta actual.');
+      return;
+    }
+    let pool = eligibleQuestions();
+    if (pool.length === 0) {
+      showToast('Activen otra categoría o reinicien la partida.');
+      return;
+    }
+    if (pool.length > 1 && state.lastSkippedId !== null) {
+      pool = pool.filter(q => q.id !== state.lastSkippedId);
+    }
+    const picked = pool[randomBelow(pool.length)];
+    state.activeId = picked.id;
+    state.activeAsker = state.nextAsker;
+    state.lastSkippedId = null;
+    spinning = true;
+    saveState();
+    // Mientras gira, la tarjeta se mantiene reservada y la elección ya está guardada.
+    renderProgress(); renderWheelAndActive();
+    const disc = byId('wheel-disc');
+    const wantedAngle = (picked.id - 1) * 3.6;
+    const offset = ((360 - ((rotation + wantedAngle) % 360)) + 360) % 360;
+    const turns = 5 + randomBelow(3);
+    const destination = rotation + turns * 360 + offset;
+    const duration = prefersLessMotion ? 0 : 2900;
+    disc.style.transition = 'none';
+    disc.style.transform = `rotate(${rotation}deg)`;
+    void disc.offsetWidth;
+    const number = byId('wheel-number');
+    let rolling;
+    if (!prefersLessMotion) rolling = setInterval(() => {
+      number.textContent = String(1 + randomBelow(100)).padStart(2, '0');
+    }, 72);
+    else number.textContent = String(picked.id).padStart(2, '0');
+    disc.style.transition = `transform ${duration}ms cubic-bezier(.16,.8,.17,1)`;
+    disc.style.transform = `rotate(${destination}deg)`;
+    rotation = destination;
+    setTimeout(() => {
+      if (rolling) clearInterval(rolling);
+      number.textContent = String(picked.id).padStart(2,'0');
+      // Normalizar el ángulo evita rotaciones enormes después de muchas partidas.
+      rotation = ((rotation % 360) + 360) % 360;
+      disc.style.transition = 'none';
+      disc.style.transform = `rotate(${rotation}deg)`;
+      spinning = false;
+      renderAll();
+      byId('question-card').scrollIntoView({ behavior: prefersLessMotion ? 'auto' : 'smooth', block: 'nearest' });
+    }, duration + 50);
+  }
+
+  function resetGame() {
+    state = newState();
+    rotation = 0;
+    const disc = byId('wheel-disc');
+    disc.style.transition = 'none'; disc.style.transform = 'rotate(0deg)';
+    saveState();
+    byId('reset-dialog').close();
+    renderAll();
+    switchView('game');
+    showToast('¡Una historia nueva para conversar! ♡');
+    window.scrollTo({top:0,behavior:prefersLessMotion?'auto':'smooth'});
+  }
+
+  document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => switchView(tab.dataset.view)));
+  byId('spin-button').addEventListener('click', spin);
+  byId('complete-button').addEventListener('click', () => {
+    if (state.activeId) markQuestion(state.activeId, true);
+  });
+  byId('skip-button').addEventListener('click', skipCurrent);
+  byId('categories').addEventListener('change', event => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || input.type !== 'checkbox' || spinning) return;
+    const id = Number(input.value);
+    if (!categoryById.has(id)) return;
+    state.enabledCategories = input.checked
+      ? [...new Set([...state.enabledCategories,id])].sort((a,b)=>a-b)
+      : state.enabledCategories.filter(n=>n!==id);
+    saveState(); renderAll();
+  });
+  byId('question-list').addEventListener('change', event => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || !input.dataset.questionId) return;
+    markQuestion(Number(input.dataset.questionId), input.checked);
+  });
+  byId('question-search').addEventListener('input', renderQuestionList);
+  byId('show-disabled').addEventListener('change', renderQuestionList);
+  document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
+    listFilter = button.dataset.filter;
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.classList.toggle('active', btn === button);
+      btn.setAttribute('aria-pressed', String(btn === button));
+    });
+    renderQuestionList();
+  }));
+  byId('reset-button').addEventListener('click', () => {
+    if (spinning) return;
+    if (typeof byId('reset-dialog').showModal === 'function') byId('reset-dialog').showModal();
+    else if (window.confirm('¿Borrar todo el progreso y empezar de nuevo?')) resetGame();
+  });
+  byId('reset-cancel').addEventListener('click', () => byId('reset-dialog').close());
+  byId('reset-confirm').addEventListener('click', resetGame);
+  byId('reset-dialog').addEventListener('click', e => {
+    if (e.target === byId('reset-dialog')) byId('reset-dialog').close();
+  });
+  makeWheelLabels();
+  renderAll();
+  </script>
+</body>
+</html>

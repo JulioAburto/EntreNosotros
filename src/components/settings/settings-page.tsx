@@ -1,0 +1,33 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { Download, Heart, LockKeyhole, Moon, Sun, Monitor } from "lucide-react";
+import { gameActions, useGame } from "@/features/game/store";
+import { downloadFile, toBackup } from "@/lib/import-export";
+import { Button, ConfirmDialog, PageHeading } from "@/components/ui/primitives";
+import type { Player, Theme } from "@/types";
+
+export function SettingsPage() {
+  const { state, blocked, error: storageError } = useGame();
+  const [players, setPlayers] = useState<[string, string]>(state?.players ?? ["Julio", "Naza"]);
+  const [firstPlayer, setFirstPlayer] = useState<Player>(state?.currentPlayer ?? 0);
+  const [clearProgress, setClearProgress] = useState(false);
+  const [confirm, setConfirm] = useState<"reset" | "recover" | null>(null);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  if (!state) return null;
+  function savePlayers(event: FormEvent) {
+    event.preventDefault(); setError("");
+    try { if (gameActions.setPlayers(players)) setMessage("Nombres guardados. Este espacio es suyo."); }
+    catch (error) { setError(error instanceof Error ? error.message : "No se pudieron guardar los nombres."); }
+  }
+  return <><PageHeading eyebrow="A NUESTRA MANERA" title="Nuestro espacio">Pequeños ajustes para sentirnos en casa.</PageHeading><div className="settings-grid"><section className="panel settings-card"><h2><Heart size={20} />Los protagonistas</h2><form className="form-stack" onSubmit={savePlayers}><fieldset disabled={blocked} className="form-stack"><label>Primera persona<input required maxLength={30} value={players[0]} onChange={event => setPlayers([event.target.value, players[1]])} autoComplete="off" /></label><label>Segunda persona<input required maxLength={30} value={players[1]} onChange={event => setPlayers([players[0], event.target.value])} autoComplete="off" /></label><Button type="submit">Guardar nombres</Button></fieldset></form></section>
+    <section className="panel settings-card"><h2>La luz de este momento</h2><p className="muted mb-5">Una misma calidez, de día o de noche.</p><fieldset disabled={blocked} className="theme-options"><legend className="sr-only">Apariencia</legend>{([{ value: "light", label: "Claro", icon: Sun }, { value: "dark", label: "Oscuro", icon: Moon }, { value: "system", label: "Sistema", icon: Monitor }] as const).map(theme => <label key={theme.value}><input type="radio" name="theme" checked={state.theme === theme.value} onChange={() => gameActions.setTheme(theme.value as Theme)} /><theme.icon size={20} /><span>{theme.label}</span></label>)}</fieldset></section>
+    <section className="panel settings-card"><h2>Un nuevo momento juntos</h2><p className="muted">Elijan quién empieza. Pueden conservar lo compartido o volver a descubrir todas las preguntas.</p><fieldset disabled={blocked} className="form-stack"><label>¿Quién comienza?<select value={firstPlayer} onChange={event => setFirstPlayer(Number(event.target.value) as Player)}>{state.players.map((player, index) => <option key={index} value={index}>{player}</option>)}</select></label><label className="inline-checkbox"><input type="checkbox" checked={clearProgress} onChange={event => setClearProgress(event.target.checked)} />Borrar el progreso para empezar de cero</label><Button variant="secondary" onClick={() => setConfirm("reset")}>Comenzar nueva partida</Button></fieldset></section>
+    <section className="panel settings-card"><h2><Download size={20} />Una copia de nuestra historia</h2><p className="muted mb-5">Guarden un respaldo antes de cambiar de teléfono, borrar datos del navegador o reinstalarlo.</p><Button variant="secondary" onClick={() => downloadFile("entre-nosotros-respaldo.json", JSON.stringify(toBackup(state), null, 2))}>Descargar respaldo completo</Button><Link href="/administrar" className="text-link mt-4">Importar preguntas o restaurar un respaldo →</Link>{storageError && !blocked && <Button variant="secondary" className="mt-4" onClick={gameActions.retrySave}>Reintentar guardado</Button>}{blocked && <div className="recovery-actions"><Button variant="secondary" onClick={() => { try { downloadFile("entre-nosotros-datos-originales.txt", gameActions.readRaw() ?? "Sin datos", "text/plain"); } catch { setError("El navegador no permite leer los datos. Revisa sus permisos de almacenamiento."); } }}>Descargar datos sin modificar</Button><Button variant="danger" onClick={() => setConfirm("recover")}>Recuperar almacenamiento</Button></div>}</section></div>
+    {message && <p className="success-message" role="status">{message}</p>}{error && <p className="form-error" role="alert">{error}</p>}
+    <section id="privacidad" className="privacy-note"><LockKeyhole size={24} /><div><h2>Lo íntimo se queda entre ustedes</h2><p>No guardamos respuestas personales, ni enviamos las preguntas o el progreso a un servidor. No hay cuentas, rastreadores ni analíticas de la aplicación.</p><p>Los datos están en localStorage de este navegador, sin cifrado. No se sincronizan entre dispositivos. Quien tenga acceso a este perfil del navegador puede verlos. En navegación privada pueden borrarse al cerrar.</p><p>Una URL pública de Vercel no es privada: las preguntas originales estarán incluidas en el sitio y en el repositorio si lo hacen público. El proveedor de alojamiento puede registrar solicitudes técnicas. Recomendamos repositorio privado y protección de acceso al despliegue.</p><p>Los respaldos también contienen preguntas, nombres y progreso: guárdenlos en un lugar privado. Nunca se guardan las respuestas a las preguntas.</p></div></section>
+    {confirm && <ConfirmDialog title={confirm === "recover" ? "¿Reemplazar los datos guardados?" : "¿Comenzar una nueva partida?"} confirmLabel={confirm === "recover" ? "Reemplazar datos y recuperar" : "Comenzar partida"} onClose={() => setConfirm(null)} onConfirm={() => { if (confirm === "recover") gameActions.recover(); else { gameActions.newGame(firstPlayer, clearProgress); setMessage("Nueva partida preparada. Pueden volver al juego."); } setConfirm(null); }}>{confirm === "recover" ? "Descarga primero los datos sin modificar. Esta acción reemplaza el almacenamiento por las 100 preguntas originales y borra preguntas personalizadas, configuración y progreso." : clearProgress ? "Se borrará el progreso, se liberará la pregunta en curso y se recuperarán las saltadas. Las preguntas personalizadas se conservan." : "Se conserva el progreso. La pregunta en curso vuelve al banco pendiente y se recuperan las preguntas saltadas."}</ConfirmDialog>}
+  </>;
+}

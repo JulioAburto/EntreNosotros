@@ -1,0 +1,902 @@
+[
+  {
+    "id": "initial-001",
+    "number": 1,
+    "text": "¿En qué momento de nuestra relación sentiste que lo que tenías conmigo era algo verdaderamente especial?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-002",
+    "number": 2,
+    "text": "¿Qué es lo que más te enamora de mí hoy, que quizás no conocías cuando empezamos a ser novios?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-003",
+    "number": 3,
+    "text": "Cuando me decís «te amo», ¿qué sentimientos pasan por tu corazón que esas dos palabras no alcanzan a expresar?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-004",
+    "number": 4,
+    "text": "¿Cuál de mis maneras de demostrarte amor te hace sentir más querida y especial?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-005",
+    "number": 5,
+    "text": "¿En qué momento conmigo has sentido que podés ser completamente vos, sin miedo a que te juzgue?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-006",
+    "number": 6,
+    "text": "Si tuvieras que explicarle a alguien cómo se siente nuestro amor, sin describir cómo soy físicamente, ¿qué le dirías?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-007",
+    "number": 7,
+    "text": "¿Qué cosa de nuestra relación te hace pensar que valió la pena que nuestros caminos se encontraran?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-008",
+    "number": 8,
+    "text": "¿Qué sentimiento bonito has descubierto conmigo que antes no habías experimentado de esta manera?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-009",
+    "number": 9,
+    "text": "¿Qué hago, incluso sin darme cuenta, que te recuerda que sos una persona muy importante en mi vida?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-010",
+    "number": 10,
+    "text": "Si esta noche pudieras decirme algo desde lo más profundo de tu corazón, sin vergüenza ni miedo a ponerte sentimental, ¿qué me dirías?",
+    "categoryId": "amor",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-011",
+    "number": 11,
+    "text": "¿En qué momentos del día me extrañás más y qué es lo primero que se te viene a la mente?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-012",
+    "number": 12,
+    "text": "Cuando estamos separados y pensás en mí, ¿qué recuerdo nuestro te hace sonreír inmediatamente?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-013",
+    "number": 13,
+    "text": "¿Qué es lo que más extrañás de tenerme físicamente a tu lado: mis abrazos, mis besos, mi voz, mi manera de molestarte cariñosamente o alguna otra cosa?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-014",
+    "number": 14,
+    "text": "Cuando vemos nuestras fotos juntos, ¿qué es lo primero que sentís?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-015",
+    "number": 15,
+    "text": "¿Qué te imaginás que vamos a hacer en los primeros cinco minutos cuando volvamos a vernos?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-016",
+    "number": 16,
+    "text": "Si ahorita apareciera a tu lado y pudiéramos pasar una hora juntos, ¿cómo te gustaría que aprovecháramos ese tiempo?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-017",
+    "number": 17,
+    "text": "¿Cuál es el abrazo nuestro que más recordás y qué lo hizo tan especial?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-018",
+    "number": 18,
+    "text": "¿Hay alguna cosa que quisieras que hiciéramos más seguido cuando estamos juntos porque la extrañás cuando no nos vemos?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-019",
+    "number": 19,
+    "text": "Cuando te acostás a dormir y te hago falta, ¿qué te gustaría que pudiera decirte al oído?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-020",
+    "number": 20,
+    "text": "Si mañana tuviéramos un día entero para nosotros, sin trabajo, estudios ni compromisos, ¿cómo sería tu día perfecto conmigo desde que despertamos hasta que nos dormimos?",
+    "categoryId": "distancia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-021",
+    "number": 21,
+    "text": "¿Cuál fue tu primera impresión de mí y en qué momento empezó a cambiar hacia algo más romántico?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-022",
+    "number": 22,
+    "text": "¿Qué recordás del 15 de marzo, cuando comenzó oficialmente nuestra historia?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-023",
+    "number": 23,
+    "text": "¿Cuál fue el primer momento en que pensaste «me estoy enamorando muchísimo de este hombre»?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-024",
+    "number": 24,
+    "text": "De todos los besos que nos hemos dado, ¿hay alguno que recordés de manera especialmente bonita? ¿Por qué?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-025",
+    "number": 25,
+    "text": "¿Qué sentís cuando ves nuestra primera foto juntos, esa que tenés en tu mesa de noche?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-026",
+    "number": 26,
+    "text": "De todos nuestros aniversarios y detalles, ¿cuál te ha hecho sentir más emocionada y querida?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-027",
+    "number": 27,
+    "text": "¿Qué sentiste cuando leíste las cartas de nuestros seis meses y recordaste todo lo que hemos vivido?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-028",
+    "number": 28,
+    "text": "¿Cuál ha sido nuestro momento más gracioso, de esos que recordás y todavía te dan ganas de reírte?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-029",
+    "number": 29,
+    "text": "Si pudiéramos regresar a vivir exactamente igual un solo día de nuestra relación, ¿cuál elegirías?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-030",
+    "number": 30,
+    "text": "Si nuestra historia fuera una película romántica, ¿qué tres escenas nuestras definitivamente tendrían que aparecer?",
+    "categoryId": "historia",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-031",
+    "number": 31,
+    "text": "¿Qué cosa que he hecho por vos te gustaría agradecerme y quizás nunca has encontrado el momento de decírmelo?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-032",
+    "number": 32,
+    "text": "¿Cuál de mis pequeños detalles cotidianos valorás más, aunque para mí parezca algo sencillo?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-033",
+    "number": 33,
+    "text": "¿De qué manera sentís que tu vida ha cambiado positivamente desde que estamos juntos?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-034",
+    "number": 34,
+    "text": "¿Qué momento difícil se te hizo más llevadero porque sabías que me tenías a tu lado?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-035",
+    "number": 35,
+    "text": "¿Qué has aprendido del amor gracias a nuestra relación?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-036",
+    "number": 36,
+    "text": "¿Qué gesto mío te ha hecho sentir cuidada, protegida emocionalmente o acompañada cuando lo necesitabas?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-037",
+    "number": 37,
+    "text": "¿Qué cualidad de nuestra relación agradecés tener y no quisieras que perdiéramos con el tiempo?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-038",
+    "number": 38,
+    "text": "¿Hay algo que hago por nuestra relación que creés que debería saber cuánto significa para vos?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-039",
+    "number": 39,
+    "text": "¿Qué experiencia bonita hemos podido vivir juntos que te hace sentir agradecida por habernos conocido?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-040",
+    "number": 40,
+    "text": "Si hoy tuviéramos que decirnos tres cosas específicas por las que estamos agradecidos el uno con el otro, ¿cuáles elegirías?",
+    "categoryId": "gratitud",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-041",
+    "number": 41,
+    "text": "¿Qué cualidad de mi personalidad admirás más y por qué?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-042",
+    "number": 42,
+    "text": "¿Qué es algo que has visto en mí que te hace sentir orgullosa de tenerme como pareja?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-043",
+    "number": 43,
+    "text": "¿Hay alguna manera en la que enfrento los problemas o las responsabilidades que te inspire?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-044",
+    "number": 44,
+    "text": "¿Qué parte de mi personalidad creés que las demás personas no conocen tan bien como vos?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-045",
+    "number": 45,
+    "text": "¿Cuál es una fortaleza mía que quizás yo mismo no reconozco lo suficiente?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-046",
+    "number": 46,
+    "text": "¿Qué cosa que he conseguido o que estoy intentando conseguir te genera admiración?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-047",
+    "number": 47,
+    "text": "¿Qué rasgo de mi manera de amar te gustaría que conserváramos incluso cuando llevemos muchos años juntos?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-048",
+    "number": 48,
+    "text": "¿Qué cualidad tuya sentís que ha crecido desde que estamos en esta relación y te hace sentir orgullosa de vos misma?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-049",
+    "number": 49,
+    "text": "¿Qué creés que tenemos cada uno como personas que hace que formemos un buen equipo?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-050",
+    "number": 50,
+    "text": "Si dentro de muchos años alguien te preguntara qué admirás de la persona con la que elegiste compartir tu vida, ¿qué te gustaría poder responder?",
+    "categoryId": "admiracion",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-051",
+    "number": 51,
+    "text": "¿Qué sueño personal tenés en tu corazón que todavía no hemos conversado lo suficiente?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-052",
+    "number": 52,
+    "text": "¿Qué aspecto de tu infancia te gustaría que yo comprendiera mejor para conocer a la persona que sos hoy?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-053",
+    "number": 53,
+    "text": "¿Qué cosas pequeñas te hacen feliz incluso cuando has tenido un día complicado?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-054",
+    "number": 54,
+    "text": "¿Cuál es una preocupación que estás viviendo actualmente y en la que te gustaría sentir más mi acompañamiento?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-055",
+    "number": 55,
+    "text": "¿Qué parte de vos sentís que pocas personas conocen, pero te gustaría que yo llegara a comprender?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-056",
+    "number": 56,
+    "text": "¿Qué necesitás emocionalmente cuando estás triste: palabras bonitas, abrazos, compañía, soluciones o simplemente que te escuche?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-057",
+    "number": 57,
+    "text": "¿Qué es algo que te da miedo del futuro, aunque tengás mucha ilusión por todo lo que viene?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-058",
+    "number": 58,
+    "text": "¿Qué experiencia de tu vida te ha enseñado una lección que quisieras compartir conmigo?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-059",
+    "number": 59,
+    "text": "¿Qué sueño te gustaría cumplir por vos misma y cómo podría apoyarte sin quitarte tu independencia?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-060",
+    "number": 60,
+    "text": "¿Qué te gustaría que siguiera descubriendo de vos, incluso después de llevar muchos años juntos?",
+    "categoryId": "conocernos",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-061",
+    "number": 61,
+    "text": "¿En qué momentos conmigo sentís mayor tranquilidad emocional, como si pudieras bajar la guardia y simplemente ser vos?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-062",
+    "number": 62,
+    "text": "¿Qué puedo hacer cuando nos extrañamos para que sintás mi cariño sin que ninguno tenga que descuidar sus responsabilidades?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-063",
+    "number": 63,
+    "text": "¿Hay alguna inseguridad personal que te gustaría que yo comprendiera mejor para acompañarte con más sensibilidad?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-064",
+    "number": 64,
+    "text": "¿Qué significa para vos sentirte emocionalmente segura en una relación?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-065",
+    "number": 65,
+    "text": "Cuando tenemos un malentendido, ¿qué actitud mía te ayuda más a sentir que seguimos siendo un equipo?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-066",
+    "number": 66,
+    "text": "¿Qué te gustaría que siempre recordáramos sobre nuestro amor incluso cuando estemos molestos o tengamos opiniones diferentes?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-067",
+    "number": 67,
+    "text": "¿Hay alguna necesidad emocional tuya que te cueste expresar por miedo a sentir que estás pidiendo demasiado?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-068",
+    "number": 68,
+    "text": "¿Qué significa para vos que alguien te elija y te siga eligiendo incluso en los días difíciles?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-069",
+    "number": 69,
+    "text": "¿Qué aspecto de nuestra comunicación sentís que hemos mejorado y cuál te gustaría que sigamos construyendo juntos?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-070",
+    "number": 70,
+    "text": "¿Qué promesa emocional realista te gustaría que nos hiciéramos, no para ser una pareja perfecta, sino para cuidarnos cuando las cosas no sean fáciles?",
+    "categoryId": "intimidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-071",
+    "number": 71,
+    "text": "Cuando te imaginás nuestra vida dentro de cinco años, ¿qué es lo primero que visualizás?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-072",
+    "number": 72,
+    "text": "¿Cómo te imaginás una mañana cualquiera en nuestra casa cuando ya estemos casados?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-073",
+    "number": 73,
+    "text": "¿Qué es lo que más ilusión te provoca de la posibilidad de convertirnos algún día en esposos?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-074",
+    "number": 74,
+    "text": "¿Qué tradiciones románticas te gustaría que tuviéramos en nuestro matrimonio, incluso después de muchos años?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-075",
+    "number": 75,
+    "text": "¿Cómo te gustaría que organicemos nuestros sueños económicos para ahorrar y construir algo juntos, sin dejar de disfrutar nuestro noviazgo?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-076",
+    "number": 76,
+    "text": "¿Qué tipo de hogar te gustaría que construyéramos, no solamente por su apariencia, sino por cómo nos sentiríamos viviendo ahí?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-077",
+    "number": 77,
+    "text": "¿Cómo imaginás que podríamos apoyarnos mutuamente con nuestras carreras, mi trabajo y tus metas en Derecho?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-078",
+    "number": 78,
+    "text": "¿Qué aventuras, viajes o experiencias te gustaría que viviéramos antes de casarnos?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-079",
+    "number": 79,
+    "text": "Si algún día decidimos formar una familia, ¿qué valores y enseñanzas te gustaría que caracterizaran nuestro hogar?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-080",
+    "number": 80,
+    "text": "Cuando seamos viejitos y recordemos toda nuestra historia, ¿qué te gustaría que pudiéramos decir sobre la manera en que nos amamos y construimos nuestra vida?",
+    "categoryId": "futuro",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-081",
+    "number": 81,
+    "text": "¿Qué es lo que más te atrae físicamente de mí y qué detalle de mi apariencia te encanta especialmente?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-082",
+    "number": 82,
+    "text": "¿Qué tipo de beso mío te gusta más y en qué momentos te dan más ganas de besarme?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-083",
+    "number": 83,
+    "text": "¿Qué cosas que hago, incluso sin intención, despiertan más tu atracción hacia mí?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-084",
+    "number": 84,
+    "text": "¿Cuál ha sido uno de nuestros momentos más apasionados que recordás con especial emoción?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-085",
+    "number": 85,
+    "text": "¿Qué tipo de caricias, abrazos o muestras de afecto te hacen sentir más deseada?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-086",
+    "number": 86,
+    "text": "¿Hay alguna fantasía romántica o sexual que te genere curiosidad y que te gustaría contarme, aunque solamente quedara en nuestra imaginación?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-087",
+    "number": 87,
+    "text": "Si pudiéramos organizar una noche completamente romántica, privada y sin interrupciones, ¿cómo te gustaría que empezara y qué ambiente crearíamos?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-088",
+    "number": 88,
+    "text": "¿Qué te gusta más del coqueteo entre nosotros y qué podríamos hacer para mantener viva esa emoción con los años?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-089",
+    "number": 89,
+    "text": "¿Qué cosas te hacen sentir cómoda y segura al hablar de tus deseos, y qué límites te gustaría que siempre respetemos?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-090",
+    "number": 90,
+    "text": "¿Qué te gustaría que descubriéramos juntos sobre nuestra intimidad para disfrutarla con más confianza, comunicación y complicidad?",
+    "categoryId": "deseo",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-091",
+    "number": 91,
+    "text": "¿Qué es lo más bonito de que, además de ser novios, también podamos ser mejores amigos y compañeros de tantas cosas?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-092",
+    "number": 92,
+    "text": "¿Qué parte de nuestras bromas, juegos, actuaciones improvisadas y maneras de molestarnos cariñosamente te encanta más?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-093",
+    "number": 93,
+    "text": "Si pudiéramos crear una tradición solamente nuestra, que nadie más entendiera y que mantuviéramos durante años, ¿cuál sería?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-094",
+    "number": 94,
+    "text": "¿Qué cosas nuevas te gustaría que probáramos juntos, como actividades, aventuras, pasatiempos o experiencias que todavía no hemos vivido?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-095",
+    "number": 95,
+    "text": "Cuando entrenamos juntos, salimos a comer o simplemente pasamos tiempo acompañándonos, ¿qué sentís que nos hace disfrutar tanto de estar en compañía del otro?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-096",
+    "number": 96,
+    "text": "Si pudiéramos escribir una carta para nosotros mismos y abrirla dentro de diez años, ¿qué te gustaría que dijera sobre nuestro amor actual y nuestros sueños?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-097",
+    "number": 97,
+    "text": "¿Qué deberíamos seguir haciendo intencionalmente para que nuestra relación conserve la ternura, las risas, los besos y la emoción de nuestros primeros meses?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-098",
+    "number": 98,
+    "text": "Si mañana nos despertáramos y tuviéramos la oportunidad de volver a empezar nuestra historia desde el día en que nos conocimos, sabiendo todo lo que sabemos hoy, ¿qué momentos volverías a elegir vivir conmigo?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-099",
+    "number": 99,
+    "text": "¿Qué es algo que todavía no me has dicho sobre lo que significo en tu vida y que te gustaría que supiera esta noche?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  },
+  {
+    "id": "initial-100",
+    "number": 100,
+    "text": "Si la vida nos permite pasar muchísimos años juntos, ¿qué te gustaría que nunca cambiara de nuestra manera de amarnos, y qué podemos hacer desde hoy para cuidar ese amor?",
+    "categoryId": "complicidad",
+    "isActive": true,
+    "createdAt": "2026-10-28T00:00:00.000Z",
+    "source": "initial"
+  }
+]
