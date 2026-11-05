@@ -19,7 +19,10 @@
     "questions:generate": "node scripts/generate-questions.mjs",
     "questions:check": "node scripts/generate-questions.mjs --check",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "db:catalog:check": "node scripts/generate-database-catalog.mjs",
+    "db:test": "pnpm dlx supabase@3.0.0 test db",
+    "db:test:rpc": "node scripts/test-database-rpc.mjs"
   },
   "dependencies": {
     "lucide-react": "1.63.0",
