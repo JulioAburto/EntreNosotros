@@ -1,6 +1,6 @@
 # Fase 2: una partida privada compartida
 
-Este documento describe una propuesta, no una integración implementada. No requiere crear ahora cuentas, proyectos, secretos ni credenciales.
+Este documento recoge el contrato funcional. La implementación local y las verificaciones realizadas se describen en la [bitácora](BITACORA.md).
 
 ## Objetivo
 
@@ -8,7 +8,7 @@ Julio y Naza podrán continuar una misma partida desde celulares distintos y adm
 
 ## Actualización manual entre dispositivos
 
-Decisión de alcance del 17 de noviembre de 2026, pendiente de implementación en la aplicación. La primera versión compartida no requiere Realtime, WebSockets ni consultas periódicas automáticas (polling).
+La versión compartida implementa la decisión del 17 de noviembre de 2026 de consultar la partida bajo demanda.
 
 - La base de datos será la fuente de verdad. Al entrar, recargar o pulsar **Actualizar partida**, se consultará un snapshot autorizado y vigente, sin usar una copia local o caché obsoleta como estado actual. El botón permitirá consultar sin recargar toda la página.
 - Cada acción se guardará inmediatamente mediante un comando al servidor. El dispositivo que la ejecuta mostrará el estado confirmado; el otro conservará su última vista hasta actualizar manualmente.

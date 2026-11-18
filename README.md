@@ -227,6 +227,8 @@ No se ha publicado un repositorio ni desplegado automáticamente.
 
 ## Segunda fase
 
-Consulta [docs/FASE-2-SUPABASE.md](docs/FASE-2-SUPABASE.md) para autenticación privada, partidas compartidas con actualización manual y migración a Supabase. El flujo planificado consulta el estado guardado al entrar, recargar o pulsar **Actualizar partida**, y guarda cada acción inmediatamente; el otro dispositivo verá los cambios cuando actualice. Realtime queda como mejora futura opcional. Este flujo todavía no está implementado en la aplicación. Esta versión no incluye credenciales, servicios backend, PWA, sonido ni sincronización cloud.
+Con Supabase configurado, entra en `/login` para identificarte y abre `/sala` para jugar en pareja. Cuando uno de los dos realiza una acción, el servidor guarda el cambio. El otro puede recargar o pulsar **Actualizar partida** para ver la pregunta, el turno y el progreso guardados.
+
+La integración se ha probado con Supabase local. La preparación del proyecto alojado y las pruebas con teléfonos físicos siguen pendientes. Consulta el [contrato del modo compartido](docs/FASE-2-SUPABASE.md) y la [bitácora de validaciones](docs/BITACORA.md).
 
 Referencias del stack: [Next.js App Router](https://nextjs.org/docs/app/getting-started/installation), [Tailwind con Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs), [pnpm](https://pnpm.io/installation), [Playwright](https://playwright.dev/docs/intro).

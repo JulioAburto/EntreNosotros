@@ -35,3 +35,26 @@ Estos resultados fueron reportados durante la sesión previa y no se volvieron a
 ### Límite importante
 
 El código local no demuestra que el proyecto Supabase remoto ya tenga el esquema aplicado ni que el correo OTP esté configurado. No se aplicaron migraciones remotas ni se enviaron correos en esta sesión.
+
+## 18 de noviembre de 2026 — Verificación con la migración de perfil
+
+Docker Desktop y Supabase arrancaron con la base local existente. Las ocho migraciones del repositorio figuran aplicadas en PostgreSQL local, incluida `20261117000500_member_profile.sql`.
+
+| Verificación | Resultado |
+| --- | --- |
+| Vitest, TypeScript y ESLint | 34 pruebas aprobadas, tipos y lint correctos |
+| PostgreSQL y PostgREST | 73 pruebas pgTAP y 18 comprobaciones HTTP aprobadas |
+| Autenticación local | 14 comprobaciones aprobadas |
+| Playwright | Las 21 pruebas pasaron en serie con el límite original de 30 segundos. En la ejecución inicial con tres trabajadores pasaron 17 y cuatro escenarios de WebKit agotaron el tiempo |
+| Sala compartida | 45 comprobaciones aprobadas, incluidos el cambio de nombre, la actualización manual desde dos navegadores y la persistencia del turno al recargar |
+| Auditoría de dependencias | Producción sin avisos conocidos. La auditoría completa informó de un aviso moderado de minimatch en herramientas de desarrollo |
+
+La siguiente etapa con infraestructura alojada requiere revisar las migraciones contra el proyecto de destino y validar que cada persona recibe su código de acceso. El formulario de la aplicación admite códigos numéricos de seis a ocho dígitos. La prueba de aceptación en teléfonos consiste en completar una pregunta en un dispositivo y comprobar en el otro que, tras actualizar, coinciden el turno y el progreso.
+
+Julio autorizó aplicar las migraciones al proyecto alojado. Se confirmó el destino a partir de la URL configurada en la aplicación. La CLI devolvió `AccessTokenRequiredError` al intentar vincular el proyecto. Quedan pendientes el inicio de sesión de la CLI, la comparación del historial remoto, la simulación y la aplicación de las migraciones. El intento de vínculo terminó antes de modificar la base.
+
+### Migraciones aplicadas en producción
+
+Tras el inicio de sesión, se vinculó el proyecto EntreNosotros (`ybisxfkpjqvpjtpvdhbw`). El historial remoto estaba vacío. La simulación enumeró ocho migraciones y se aplicaron las ocho. La consulta posterior confirmó que cada versión local coincide con su versión remota, hasta `20261117000500`. Una segunda simulación devolvió `upToDate: true` y cero migraciones pendientes.
+
+Quedan por validar la entrega del código por correo y una partida compartida desde dos teléfonos contra el proyecto alojado.

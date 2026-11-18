@@ -2,6 +2,8 @@
 
 Fecha de auditoría: 4 de noviembre de 2026, America/Guatemala.
 
+Este diagnóstico conserva las observaciones de la auditoría inicial. Para retomar la implementación y consultar las pruebas posteriores, usa la [bitácora del proyecto](BITACORA.md).
+
 ## Decisión de alcance: actualización manual (17 de noviembre de 2026)
 
 La versión compartida consultará la base de datos al entrar, recargar o pulsar **Actualizar partida**. Cada acción se guardará inmediatamente y actualizará la pantalla que la ejecutó; el otro dispositivo verá los cambios cuando actualice. No se implementarán Realtime, WebSockets ni polling en este alcance. Se mantienen Auth/RLS, snapshot coherente, revisión, transacciones e idempotencia.
