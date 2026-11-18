@@ -17,7 +17,7 @@
 | 3. Supabase Auth | GPT-6.1 Sol | High |
 | 4. Salas e invitaciones | GPT-6.1 Sol | High |
 | 5. Motor de partida transaccional | GPT-6.1 Sol | High |
-| 6. Repositorio remoto y Realtime | GPT-6.1 Sol | High |
+| 6. Repositorio remoto y actualización manual | GPT-6.1 Sol | High |
 | 7. Interfaz multijugador | GPT-6.1 Sol | Medium |
 | 8. Migración del progreso local | GPT-6.1 Sol | High |
 | 9. Pruebas integrales y E2E | GPT-6.1 Sol | High |
@@ -36,7 +36,7 @@ Trabaja en el repositorio existente de **Entre Nosotros ❤️**. Necesito la au
 1. Examina `docs/FASE-2-SUPABASE.md`, `package.json`, lockfile, estructura App Router, tipos, estado, repositorios, ruleta, turnos, preguntas, importación/exportación, `localStorage`, UI, scripts y pruebas. Identifica los cambios sin commit para no sobrescribirlos.
 2. Contrasta el documento con el código real. Señala inconsistencias y dependencias entre pasos, particularmente: jugador que pregunta versus quien responde, IDs estables, categorías privadas, número arbitrario de preguntas, estado de partida y transiciones.
 3. Verifica si las versiones de Next.js, React, Supabase y dependencias tienen alertas de seguridad conocidas y recomienda una ruta de actualización **compatible y comprobable**, sin actualizar todo indiscriminadamente. Si corresponde instalar herramientas de Supabase CLI, define cómo probarlas localmente.
-4. Elige un diseño mínimo para autenticación, salas, almacenamiento, operaciones atómicas y Realtime. Conserva las entidades `games`, `game_members`, `categories`, `questions`, `completions`, salvo justificación concreta. Decide si hacen falta rondas e invitaciones. Explica cómo manejar la posible privacidad del banco inicial si actualmente está en el bundle público.
+4. Elige un diseño mínimo para autenticación, salas, almacenamiento, operaciones atómicas y actualización manual. Conserva las entidades `games`, `game_members`, `categories`, `questions`, `completions`, salvo justificación concreta. Decide si hacen falta rondas e invitaciones. Explica cómo manejar la posible privacidad del banco inicial si actualmente está en el bundle público.
 5. Prepara un mapa de archivos existentes→responsabilidades nuevas, contratos TypeScript que cambiarán, dependencias y riesgos. Identifica si hay un requisito que impediría desplegar sin credenciales o aprobación del propietario.
 6. Crea o actualiza `docs/FASE-2-ESTADO.md` con un plan por etapas, estado inicial, verificaciones y próximos pasos. Actualiza documentación solo si es necesario; **no implementes aún Supabase ni refactorices toda la aplicación**.
 
@@ -123,22 +123,22 @@ Implementa el motor autoritativo de **Entre Nosotros ❤️**: selección de pre
 
 ---
 
-## ETAPA 6 — Repositorio remoto, sincronización en tiempo real y reconexión
+## ETAPA 6 — Repositorio remoto y actualización manual
 **Modelo:** GPT-6.1 Sol · **Reasoning:** High
 
 ### Prompt para Codex
 
-Conecta la aplicación frontend de **Entre Nosotros ❤️** con el backend ya implementado; agrega sincronización entre dos sesiones de usuario sin reemplazar el estado autoritativo de PostgreSQL.
+Conecta la aplicación frontend de **Entre Nosotros ❤️** con el backend ya implementado mediante actualización manual del estado autoritativo de PostgreSQL.
 
-1. Conserva la abstracción de repositorio existente e introduce una implementación remota **asíncrona** con tipos y errores explícitos. El estado debe distinguir `loading`, `saving`, `conflict`, `error`, `offline`, `reconnecting` y `ready`. Evita sobrescrituras enviando JSON entero de la partida.
-2. Usa Supabase Realtime sobre eventos autorizados. Para una sala de dos jugadores, evalúa Postgres Changes como opción simple; si eliges Broadcast, implementa autorización de canal privado con RLS. No expongas datos de salas ajenas en canales públicos.
-3. Un cambio relevante provoca invalidación/refetch del snapshot autoritativo. Compara versiones monotónicas, coalesce eventos repetidos y evita respuestas HTTP antiguas sobrescribiendo una revisión nueva.
-4. Suscríbete y desuscríbete correctamente al montar/desmontar o cambiar de sala. Trata reconexión, cambio de pestaña, sesión caducada, duplicación de eventos y errores de red. Al reconectar, vuelve a consultar el snapshot antes de permitir mutaciones.
-5. Una pregunta activa debe sobrevivir a recargas y mostrarse igual en ambos teléfonos. Si se pierde conexión, conserva la pregunta en modo lectura y no simules éxito en operaciones no confirmadas.
-6. Prueba con **dos contextos independientes de usuario**. Verifica propagación de pregunta, completado, turno, filtros y pregunta personalizada. Usa mocks solo para pruebas unitarias; los tests de integración deben verificar el backend real cuando sea posible.
+1. Conserva la abstracción de repositorio e introduce una implementación remota **asíncrona** con tipos y errores explícitos. Distingue carga, envío, conflicto, error, desconexión y estado listo. No envíes el JSON entero para sobrescribir la partida.
+2. Consulta el snapshot autorizado al entrar, recargar o pulsar **Actualizar partida**. No implementes Realtime, WebSockets ni polling. Evita cachés obsoletas.
+3. Guarda cada acción inmediatamente y muestra su resultado confirmado en el dispositivo que la ejecutó. El otro conserva su última vista hasta actualizar. Descarta respuestas HTTP antiguas y snapshots de menor revisión.
+4. Mantén revisión, transacciones e idempotencia. Una acción con revisión obsoleta debe mostrar «La partida se actualizó. Actualiza para continuar», sin sobrescribir datos ni ejecutarse automáticamente sobre el nuevo turno. Cancela peticiones y limpia datos al cambiar sesión o sala.
+5. Persiste pregunta activa, roles, turno, progreso y configuración compartida. Actualizar solo lee y no cambia la selección ni el turno. Ante errores de red, conserva la última vista como referencia y no simules guardados; consulta antes de reintentar un comando de resultado incierto usando el mismo identificador.
+6. Prueba con **dos contextos independientes de usuario**: pregunta, completado, turno, filtros y pregunta personalizada coinciden después de actualizar manualmente. Verifica vistas obsoletas, doble envío, errores de consulta y reintentos tras timeout. Usa mocks solo para pruebas unitarias; las de integración deben verificar el backend real cuando sea posible.
 7. Ejecuta TypeScript, lint, pruebas y actualiza `docs/FASE-2-ESTADO.md`.
 
-**Criterio de salida:** ambos clientes ven el mismo estado y pueden reconectarse sin corromper el progreso.
+**Criterio de salida:** ambos clientes recuperan el mismo estado al actualizar manualmente, sin corromper el progreso ni requerir actualizaciones automáticas.
 
 ---
 
@@ -152,7 +152,7 @@ Integra visualmente el modo multijugador online en la interfaz existente de **En
 1. Completa pantallas existentes o faltantes: inicio, autenticación, sala privada, invitación, espera/aprobación, juego, biblioteca de preguntas, progreso y configuración. Reutiliza componentes y estilo antes de crear otros.
 2. Diferencia roles: a quien pregunta, `Vos preguntás — Naza responde` (o nombre correspondiente); al respondedor, `Te toca responder`. Solo el preguntador autorizado puede girar; solo el respondedor confirma. Actualiza etiquetas según el estado autoritativo.
 3. La tarjeta activa conserva texto completo, categoría, número y destinatario hasta completar/saltar. La ruleta anima únicamente un resultado ya confirmado por servidor; no muestres selecciones locales ficticias. Incluye `prefers-reduced-motion`.
-4. Visualiza conexión/reconexión, errores, permisos insuficientes, final de categoría, ausencia de preguntas elegibles y conflictos por actualización simultánea. Un cambio confirmado debe aparecer en ambos teléfonos sin reload manual.
+4. Incluye **Actualizar partida**, estados de carga/envío, errores de red, permisos insuficientes, final de categoría, ausencia de preguntas elegibles y conflictos. Un cambio confirmado aparece en el dispositivo que lo ejecuta; el otro lo verá al recargar o actualizar manualmente.
 5. Optimiza desde 320px, área de toque, contraste, navegación con teclado, focus visible, lectores de pantalla, carga y rendimiento móvil. No agregues dependencias innecesarias ni efectos pesados.
 6. Añade pruebas de componentes para estados clave y un smoke test responsive si existe Playwright. Ejecuta checks y actualiza documentación.
 
@@ -186,14 +186,14 @@ Implementa la migración **explícita, verificable y reversible** de la partida 
 Realiza la validación integral de la implementación de **Entre Nosotros ❤️ Fase 2**. No reemplaces pruebas reales por mocks donde la seguridad y concurrencia dependan de PostgreSQL o Auth.
 
 1. Revisa la cobertura actual y crea pruebas de unidad (dominio/selector/turnos/validación), integración real de DB/RLS/operaciones y Playwright end-to-end de dos contextos independientes.
-2. Flujo E2E principal: usuario A inicia sesión y crea sala; invita a B; B solicita y A aprueba; A gira; A y B ven la misma pregunta; B completa; turno cambia una sola vez; B gira; A responde; ambos recargan y recuperan progreso; pregunta completada no se repite.
+2. Flujo E2E principal: usuario A inicia sesión y crea sala; invita a B; B solicita y A aprueba; A gira; B actualiza y ambos ven la misma pregunta; B completa; turno cambia una sola vez; B gira; A actualiza y responde; ambos recargan y recuperan progreso; pregunta completada no se repite.
 3. Prueba un **tercer usuario autenticado** y usuario anónimo: prohibir lectura y escritura, incorporación ilícita, enumeración de preguntas, elevación de rol e invitación inválida. Verifica RLS y grants reales.
 4. Prueba dos reservas simultáneas, doble completado, petición repetida con misma idempotency key, saltos, revisión obsoleta, eliminar categoría/pregunta activa, cambio de turno, reinicio, conectividad intermitente y reconexión.
 5. Verifica importación idempotente de respaldos y conservación de las 100 preguntas originales. Prueba que no se registran respuestas personales, secretos, tokens o respaldos en logs.
 6. Ejecuta los comandos concretos de typecheck, lint, unit, integration, build y E2E según scripts reales. Corrige errores pertinentes; si falta Supabase local, configuración SMTP o credenciales de prueba, deja pruebas pendientes explícitas con procedimiento para ejecutarlas, sin simular resultados.
 7. Resume cobertura funcional, riesgos, regresiones y resultados reales en `docs/FASE-2-ESTADO.md`.
 
-**Criterio de salida:** evidencia ejecutable de dos usuarios sincronizados y controles de seguridad/concurrencia, con bloqueos declarados.
+**Criterio de salida:** evidencia ejecutable de dos usuarios con estado coincidente tras actualizar manualmente y controles de seguridad/concurrencia, con bloqueos declarados.
 
 ---
 
@@ -202,7 +202,7 @@ Realiza la validación integral de la implementación de **Entre Nosotros ❤️
 
 ### Prompt para Codex
 
-Audita la implementación real de **Entre Nosotros ❤️ Fase 2** como una revisión adversarial de seguridad, privacidad, consistencia y despliegue. Lee las migraciones, funciones, RLS, grants, rutas, autenticación, estado React, Realtime y pruebas; no te limites a recomendaciones generales.
+Audita la implementación real de **Entre Nosotros ❤️ Fase 2** como una revisión adversarial de seguridad, privacidad, consistencia y despliegue. Lee las migraciones, funciones, RLS, grants, rutas, autenticación, estado React, actualización manual y pruebas; no te limites a recomendaciones generales.
 
 1. Construye un modelo de amenazas específico: usuario anónimo, tercero autenticado, invitación filtrada, sesión caducada, doble envío, cliente malicioso, usuario miembro intentando ejecutar el turno del otro y claves expuestas.
 2. Revisa grants y RLS por tabla y operación; prueba aislamiento con tres usuarios. Audita `SECURITY DEFINER`, `search_path`, exposición de esquemas RPC, validación de identidad, tokens de invitación, expiración y autorización por sala. Confirma que los originales/client bundle no se presenten falsamente como privados.
@@ -226,7 +226,7 @@ Prepara **Entre Nosotros ❤️ Fase 2** para desplegarse en **Vercel** con **Su
 2. Completa `.env.example`, `.gitignore` y documentación sin incluir credenciales reales. Identifica variables públicas y secretas; valida fallos de configuración sin mostrar secretos. Configura y documenta URLs de Auth/redirect en localhost, Vercel Preview y dominio definitivo.
 3. Revisa `supabase/migrations`, seeds y tests: explica cómo desplegar cambios sin borrar datos, cómo revisar permisos, cómo usar un entorno de pruebas separado y cómo verificar una copia de seguridad. Nunca apliques migraciones destructivas a producción sin aprobación.
 4. Completa scripts `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm start`, typecheck, lint, unit, integration y e2e de acuerdo con el `package.json` real. Incluye pasos de Windows 11 + PowerShell y Supabase CLI.
-5. Actualiza `README.md` y `docs/FASE-2-SUPABASE.md` reflejando **implementado, probado, pendiente y no verificado**. Documenta autenticación/SMTP, invitaciones, RLS, Realtime, migración de localStorage, privacidad, límites/costos potenciales, solución de errores y prueba con dos teléfonos.
+5. Actualiza `README.md` y `docs/FASE-2-SUPABASE.md` reflejando **implementado, probado, pendiente y no verificado**. Documenta autenticación/SMTP, invitaciones, RLS, actualización manual, migración de localStorage, privacidad, límites/costos potenciales, solución de errores y prueba con dos teléfonos.
 6. Ejecuta build y checks realmente disponibles. Prepara un checklist de despliegue con pasos exactos para GitHub → Vercel → variables → migraciones → Auth redirects → smoke tests desde dos usuarios. Si es posible ejecutar entorno preview sin consumir recursos productivos y con autorización, ofrece la opción, pero **no despliegues automáticamente**.
 7. Cierra `docs/FASE-2-ESTADO.md` con los resultados reales, riesgos pendientes y pasos manuales concretos.
 
@@ -250,7 +250,6 @@ Prepara **Entre Nosotros ❤️ Fase 2** para desplegarse en **Vercel** con **Su
 - Supabase Auth SSR: https://supabase.com/docs/guides/auth/server-side
 - Supabase RLS: https://supabase.com/docs/guides/database/postgres/row-level-security
 - Supabase Database Functions: https://supabase.com/docs/guides/database/functions
-- Supabase Realtime: https://supabase.com/docs/guides/realtime/subscribing-to-database-changes
 - Vercel deployments: https://vercel.com/docs/deployments
 - Model selection: https://developers.openai.com/api/docs/guides/model-selection
 - Codex usage: https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex

@@ -22,11 +22,15 @@
     "format:check": "prettier --check .",
     "db:catalog:check": "node scripts/generate-database-catalog.mjs",
     "db:test": "pnpm dlx supabase@3.0.0 test db",
-    "db:test:rpc": "node scripts/test-database-rpc.mjs"
+    "db:test:rpc": "node scripts/test-database-rpc.mjs",
+    "test:auth": "node scripts/test-auth.mjs",
+    "test:remote": "node scripts/test-remote.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.119.0",
     "lucide-react": "1.63.0",
-    "next": "16.4.3",
+    "next": "16.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
@@ -37,10 +41,10 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.39.0",
-    "eslint-config-next": "16.4.3",
+    "eslint-config-next": "16.4.6",
+    "prettier": "^3.6.2",
     "tailwindcss": "4.3.3",
     "typescript": "^5.9.0",
-    "vitest": "5.0.5",
-    "prettier": "^3.6.2"
+    "vitest": "5.0.5"
   }
 }

@@ -209,7 +209,7 @@ try {
   };
   const reservations = await Promise.all([
     request('rpc/reserve_question', member, reserve),
-    request('rpc/reserve_question', partner, {
+    request('rpc/reserve_question', member, {
       ...reserve,
       p_command_id: randomUUID(),
     }),
@@ -237,7 +237,7 @@ try {
   };
   const partnerCommand = {...command, p_command_id: randomUUID()};
   const completed = await Promise.all([
-    request('rpc/complete_question', member, command),
+    request('rpc/complete_question', partner, command),
     request('rpc/complete_question', partner, partnerCommand),
   ]);
   check(
@@ -260,13 +260,13 @@ try {
     (
       await request(
         'rpc/complete_question',
-        winner === 0 ? member : partner,
+        partner,
         winnerCommand,
       )
     ).ok,
     'retry after commit succeeds without a second completion',
   );
-  const next = await request('rpc/reserve_question', member, {
+  const next = await request('rpc/reserve_question', partner, {
     p_game_id: game,
     p_command_id: randomUUID(),
     p_expected_revision: after.revision,

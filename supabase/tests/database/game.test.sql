@@ -56,7 +56,7 @@ select throws_ok($$do $test$ begin
   insert into public.games(id,current_member_id,enabled_category_ids)
     values ('20000000-0000-4000-8000-000000000099',gen_random_uuid(),'{}');
   set constraints all immediate;
-end $test$;$$,'23503',null,'a game cannot commit without its two membership identities');
+end $test$;$$,'23503',null,'a game cannot commit without its creator membership');
 
 select throws_ok($$update public.questions set text = 'altered' where game_id = '20000000-0000-4000-8000-000000000001' and id = 'initial-001'$$,'23514',null,'original question cannot be changed even by maintenance writes');
 select throws_ok($$delete from public.questions where game_id = '20000000-0000-4000-8000-000000000001' and id = 'initial-001'$$,'23514',null,'original question cannot be deleted');
@@ -67,7 +67,7 @@ select throws_ok($$update public.game_members set user_id = '10000000-0000-4000-
 select throws_ok($$do $test$ begin
   delete from public.game_members where game_id = '20000000-0000-4000-8000-000000000001' and position = 1;
   set constraints all immediate;
-end $test$;$$,'23514',null,'deferred constraint rejects a game with only one member');
+end $test$;$$,'23514',null,'joined membership cannot be silently deleted and replaced');
 select throws_ok($$do $test$ begin
   update public.games set current_member_id = (select id from public.game_members
     where game_id = '20000000-0000-4000-8000-000000000002' and position = 0)
@@ -118,12 +118,16 @@ select ok((select active_question_id is not null from public.games),'reserve per
 select is(public.reserve_question('20000000-0000-4000-8000-000000000001','30000000-0000-4000-8000-000000000001',1),
   (select body from command_results where kind='reserve'),'reserve retry returns the same receipt');
 select throws_ok($$select public.reserve_question('20000000-0000-4000-8000-000000000001','30000000-0000-4000-8000-000000000002',1)$$,'40001','Game revision conflict','stale reserve is rejected');
+select throws_ok($$select public.complete_question('20000000-0000-4000-8000-000000000001','30000000-0000-4000-8000-000000000010',2,(select body->>'questionId' from command_results where kind='reserve'))$$,'42501','Responder required','asker cannot complete for responder');
+reset role;
+select set_config('request.jwt.claims','{"role":"authenticated","sub":"10000000-0000-4000-8000-000000000002"}',true);
+set local role authenticated;
 insert into command_results select 'complete',public.complete_question(
   '20000000-0000-4000-8000-000000000001','30000000-0000-4000-8000-000000000003',2,
   (select body->>'questionId' from command_results where kind='reserve'));
 select is((select count(*) from public.completions),1::bigint,'complete inserts exactly one completion');
 select is((select m.position::integer from public.games g join public.game_members m on m.id=g.current_member_id),1,'complete alternates turn');
-select is((select m.position::integer from public.completions c join public.game_members m on m.id=c.responder_member_id),1,'respondent is the opposite member, not the command actor');
+select is((select m.position::integer from public.completions c join public.game_members m on m.id=c.responder_member_id),1,'respondent is the opposite member of the current asker');
 select is(public.complete_question('20000000-0000-4000-8000-000000000001','30000000-0000-4000-8000-000000000003',2,
   (select body->>'questionId' from command_results where kind='reserve')),
   (select body from command_results where kind='complete'),'complete retry does not alternate again');

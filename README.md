@@ -227,6 +227,6 @@ No se ha publicado un repositorio ni desplegado automáticamente.
 
 ## Segunda fase
 
-Consulta [docs/FASE-2-SUPABASE.md](docs/FASE-2-SUPABASE.md) para autenticación privada, partidas compartidas, sincronización y migración a Supabase. Esta versión no incluye credenciales, servicios backend, PWA, sonido ni sincronización cloud.
+Consulta [docs/FASE-2-SUPABASE.md](docs/FASE-2-SUPABASE.md) para autenticación privada, partidas compartidas con actualización manual y migración a Supabase. El flujo planificado consulta el estado guardado al entrar, recargar o pulsar **Actualizar partida**, y guarda cada acción inmediatamente; el otro dispositivo verá los cambios cuando actualice. Realtime queda como mejora futura opcional. Este flujo todavía no está implementado en la aplicación. Esta versión no incluye credenciales, servicios backend, PWA, sonido ni sincronización cloud.
 
 Referencias del stack: [Next.js App Router](https://nextjs.org/docs/app/getting-started/installation), [Tailwind con Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs), [pnpm](https://pnpm.io/installation), [Playwright](https://playwright.dev/docs/intro).

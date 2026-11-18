@@ -6,6 +6,18 @@ Este documento describe una propuesta, no una integración implementada. No requ
 
 Julio y Naza podrán continuar una misma partida desde celulares distintos y administrar preguntas sin intercambiar respaldos. La ausencia de respuestas escritas debe mantenerse por defecto.
 
+## Actualización manual entre dispositivos
+
+Decisión de alcance del 17 de noviembre de 2026, pendiente de implementación en la aplicación. La primera versión compartida no requiere Realtime, WebSockets ni consultas periódicas automáticas (polling).
+
+- La base de datos será la fuente de verdad. Al entrar, recargar o pulsar **Actualizar partida**, se consultará un snapshot autorizado y vigente, sin usar una copia local o caché obsoleta como estado actual. El botón permitirá consultar sin recargar toda la página.
+- Cada acción se guardará inmediatamente mediante un comando al servidor. El dispositivo que la ejecuta mostrará el estado confirmado; el otro conservará su última vista hasta actualizar manualmente.
+- Se persistirán pregunta activa, quién pregunta, quién responde, turno, progreso y configuración compartida. Actualizar solo lee: no sortea otra pregunta, completa ni alterna el turno. No se almacenarán respuestas personales.
+- Se mantienen transacciones, revisión e idempotencia. Una acción desde una revisión obsoleta se rechazará sin sobrescribir cambios y mostrará «La partida se actualizó. Actualiza para continuar». No se reaplicará automáticamente sobre el turno nuevo.
+- Mostrar carga, envío y errores. No presentar operaciones sin confirmar como guardadas. Tras recuperar conexión, consultar el estado vigente antes de reintentar; conservar el identificador del comando cuando su resultado sea incierto.
+
+El otro dispositivo puede mostrar información antigua hasta actualizar. Las actualizaciones automáticas quedan como mejora futura opcional.
+
 ## Modelo propuesto
 
 - `games`: identidad de la pareja, turno, pregunta activa, revisión y configuración compartida.
@@ -33,7 +45,7 @@ No basta con enviar el JSON entero después de cada clic. Añadir comandos tipad
 
 La selección se hará sobre el conjunto elegible de la partida autorizada. El servidor será la autoridad sobre progreso y turno. La animación del cliente usará la reserva confirmada, conservando la coherencia entre centro de la ruleta y tarjeta.
 
-Las notificaciones en tiempo real deben provocar la carga de una revisión actualizada. Tras reconexión se consulta el estado vigente antes de reintentar operaciones. No prometer funcionamiento sin conexión ni resolución automática de conflictos hasta implementar y probar esos contratos.
+La lectura seguirá el flujo de actualización manual descrito arriba. No se requieren canales ni publicaciones Realtime. No prometer funcionamiento sin conexión ni resolución automática de conflictos hasta implementar y probar esos contratos.
 
 ## Migración desde localStorage
 
@@ -51,7 +63,10 @@ Revisar las fechas desconocidas marcadas con epoch en migraciones del HTML: son 
 
 - Un usuario ajeno no puede leer ni modificar la partida.
 - Dos clientes que completan simultáneamente provocan una sola transición.
-- La misma pregunta activa aparece en ambos teléfonos y al reconectar.
+- Tras recargar o pulsar **Actualizar partida**, ambos teléfonos muestran la misma pregunta activa, roles, turno y progreso guardados; actualizar no altera la partida.
+- El otro dispositivo conserva su última vista hasta actualizar; no hay suscripciones ni polling.
+- Una acción desde una vista obsoleta produce conflicto sin sobrescribir cambios ni avanzar otro turno.
+- Un error de lectura o escritura se muestra sin simular éxito; un reintento tras timeout no duplica acciones.
 - Los filtros, destinatarios y progresos se mantienen coherentes.
 - Importar repetidamente un respaldo no duplica preguntas ni completadas.
 - Un fallo parcial revierte la transacción y permite reintentar sin pérdida.

@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 
 const nextConfig: NextConfig = {
+  distDir: process.env.LOCAL_INTEGRATION_TEST === "1" ? ".next-integration" : ".next",
   poweredByHeader: false,
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   async headers() {

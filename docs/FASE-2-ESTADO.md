@@ -2,6 +2,12 @@
 
 Fecha de auditoría: 4 de noviembre de 2026, America/Guatemala.
 
+## Decisión de alcance: actualización manual (17 de noviembre de 2026)
+
+La versión compartida consultará la base de datos al entrar, recargar o pulsar **Actualizar partida**. Cada acción se guardará inmediatamente y actualizará la pantalla que la ejecutó; el otro dispositivo verá los cambios cuando actualice. No se implementarán Realtime, WebSockets ni polling en este alcance. Se mantienen Auth/RLS, snapshot coherente, revisión, transacciones e idempotencia.
+
+Esta actualización modifica el plan y sus criterios de aceptación; no acredita implementación ni nuevas pruebas del modo remoto. Los resultados de auditoría y ejecución conservan sus fechas originales. El contrato funcional está en [FASE-2-SUPABASE.md](FASE-2-SUPABASE.md).
+
 ## Alcance y conclusión
 
 Se leyó completamente `docs/FASE-2-SUPABASE.md` y se contrastó con tipos, rutas, componentes, reglas, store, repositorio, validadores, importadores, generador, dependencias y pruebas existentes. Este documento es el entregable de diagnóstico; las decisiones siguientes son propuestas para implementar después. No se implementaron Auth, SQL, RLS, Realtime ni endpoints, y no se crearon cuentas, proyectos o credenciales.
@@ -76,7 +82,7 @@ El JSON de auditoría clasifica algunos nodos transitivos de forma poco útil (`
 | TypeScript | 5.9.3 | 7.0.2 | Mantener versión actual durante la integración |
 | @types/node | 24.19.2 | 26.6.6 | Mantener tipos de la rama de runtime elegida |
 
-Dependencias nuevas propuestas para la siguiente fase: `@supabase/supabase-js` y `@supabase/ssr`, necesarias para datos, Realtime y sesiones SSR. Elegir versiones y solicitar aprobación al instalarlas. No añadir ORM, Zod, gestor de estado, biblioteca de consultas o runner de tests nuevo: no son necesarios para este alcance. Conservar validación propia, Vitest y Playwright.
+Dependencias nuevas propuestas para la siguiente fase: `@supabase/supabase-js` y `@supabase/ssr`, propuestas para datos y sesiones SSR. Elegir versiones y solicitar aprobación al instalarlas. No añadir ORM, Zod, gestor de estado, biblioteca de consultas o runner de tests nuevo: no son necesarios para este alcance. Conservar validación propia, Vitest y Playwright.
 
 ## Módulos reutilizables y modificaciones necesarias
 
@@ -110,11 +116,11 @@ UI cliente ── store async ── repositorio HTTP ── Route Handlers App 
                                                 ▼
                                   RPC PostgreSQL + RLS + constraints
                                                 │ commit + revisión
-UI cliente ◀── Supabase Realtime: games UPDATE ───┘
-                 └── volver a consultar snapshot autorizado
+UI cliente ◀── respuesta del comando confirmado ──┘
+Entrada / recarga / Actualizar partida ── consultar snapshot autorizado
 ```
 
-Mantener Server Components para acceso inicial; reservar Client Components para interacción y suscripción. Las mutaciones pasan por Route Handlers Node en `src/app/api/games/[gameId]/**/route.ts`; autenticación callback en App Router. Un servicio exclusivo de servidor comparte lógica entre páginas y handlers, sin que los Server Components hagan HTTP a su propia aplicación. Elegir esta única entrada HTTP para comandos evita duplicar los mismos casos en Server Actions.
+Mantener Server Components para acceso inicial; reservar Client Components para interacción y actualización manual. Las mutaciones pasan por Route Handlers Node en `src/app/api/games/[gameId]/**/route.ts`; autenticación callback en App Router. Un servicio exclusivo de servidor comparte lógica entre páginas y handlers, sin que los Server Components hagan HTTP a su propia aplicación. Elegir esta única entrada HTTP para comandos evita duplicar los mismos casos en Server Actions.
 
 Crear, cuando corresponda, módulos pequeños en `lib/supabase/{browser,server,env}.ts`, un servicio de partida exclusivo de servidor y un adaptador remoto del repositorio. Las migraciones SQL versionadas irán en `supabase/migrations/`. Son ubicaciones previstas; no se crearon en esta auditoría.
 
@@ -144,7 +150,7 @@ Normalización de texto: preservar NFC, espacios y minúsculas de `normalizedTex
 
 ### Autorización y transacciones
 
-RLS habilitada en las cinco tablas, sin permisos de lectura para `anon`. SELECT autorizado por membresía, tanto para HTTP como para Realtime. Evitar una política autorreferencial de `game_members` que cause recursión: helper de membresía privado y revisado, con privilegios mínimos. Indexar el acceso por `user_id` y `game_id`. [RLS oficial](https://supabase.com/docs/guides/database/postgres/row-level-security).
+RLS habilitada en las cinco tablas, sin permisos de lectura para `anon`. SELECT autorizado por membresía, para toda consulta y comando remoto. Evitar una política autorreferencial de `game_members` que cause recursión: helper de membresía privado y revisado, con privilegios mínimos. Indexar el acceso por `user_id` y `game_id`. [RLS oficial](https://supabase.com/docs/guides/database/postgres/row-level-security).
 
 **RLS de membresía por sí sola no protege turnos.** Revocar INSERT/UPDATE/DELETE directos a clientes en tablas de dominio. Las escrituras solo se realizan mediante RPC estrechas que verifican `auth.uid()`, membresía, referencias y reglas. Para escribir con DML revocado, estas funciones requieren privilegios controlados (`SECURITY DEFINER`), `search_path` fijo/vacío, nombres de esquema explícitos y EXECUTE revocado a PUBLIC/anon; conceder únicamente a authenticated. No aplicar definer indiscriminadamente: probar cada frontera, incluidas llamadas directas que eludan Next. [Seguridad de funciones](https://supabase.com/docs/guides/database/functions).
 
@@ -152,7 +158,7 @@ Cada mutación lleva `commandId` UUID y `expectedRevision`. Hace falta un regist
 
 Dentro de una transacción: comprobar identidad/membresía, bloquear `games` con `FOR UPDATE`, buscar recibo antes de exigir revisión, rechazar reutilización de ID con distinto actor/payload, validar revisión y precondiciones, aplicar cambio, incrementar revisión y guardar recibo. Un replay devuelve el resultado ya registrado sin repetir la transición; una revisión obsoleta devuelve conflicto. No borrar recibos al reiniciar progreso. Definir cualquier retención futura junto con un plazo verificable de reintento.
 
-Obtener snapshot mediante una sola consulta/RPC coherente con revisión, no ensamblar consultas independientes de tablas mientras otros comandos escriben. Toda mutación compartida, incluso pregunta/categoría, debe incrementar `games.revision`; de lo contrario la suscripción no avisaría del cambio.
+Obtener snapshot mediante una sola consulta/RPC coherente con revisión, no ensamblar consultas independientes de tablas mientras otros comandos escriben. Toda mutación compartida, incluso pregunta/categoría, debe incrementar `games.revision`; para detectar acciones basadas en un estado obsoleto.
 
 ### Contrato remoto y store
 
@@ -173,15 +179,17 @@ El contrato local actual se mantiene para datos existentes. Añadir un contrato 
 
 `meta` contiene partida, revisión esperada e idempotencia; el actor se deriva del JWT, nunca del payload. Respuestas discriminadas: éxito/replay con revisión, conflicto, entrada inválida, sesión vencida, acceso denegado y error recuperable. Separar ausencia de elegibles de fallo de red.
 
-El store representa carga inicial, envío pendiente, conflicto, reintento y desconexión; conserva el último snapshot confirmado. No alterna turnos ni marca completadas optimistamente. Un timeout puede haber ocurrido después del commit: consultar snapshot y reintentar el mismo `commandId`, nunca generar automáticamente otra operación. Descartar snapshots de revisión menor y respuestas de una sesión/partida anterior. Al salir, cancelar suscripciones/peticiones y vaciar preguntas privadas de memoria; no copiar respaldo remoto completo a localStorage por defecto.
+El store representa carga inicial, envío pendiente, conflicto, reintento y desconexión; conserva el último snapshot confirmado. No alterna turnos ni marca completadas optimistamente. Un timeout puede haber ocurrido después del commit: consultar snapshot y reintentar el mismo `commandId`, nunca generar automáticamente otra operación. Descartar snapshots de revisión menor y respuestas de una sesión/partida anterior. Al salir, cancelar peticiones y vaciar preguntas privadas de memoria; no copiar respaldo remoto completo a localStorage por defecto.
 
-La UI de ruleta puede mostrar espera al enviar, pero solo anima y muestra la reserva confirmada. Un bloqueo local evita doble toque accidental; no reemplaza el bloqueo SQL. Ante cambio remoto de la activa, cancelar animación obsoleta y mostrar el estado vigente. Formularios esperan respuesta antes de cerrarse y conservan entrada si hay conflicto.
+La UI de ruleta puede mostrar espera al enviar, pero solo anima y muestra la reserva confirmada. Un bloqueo local evita doble toque accidental; no reemplaza el bloqueo SQL. Al recibir un snapshot actualizado con cambio de la activa, cancelar animación obsoleta y mostrar el estado vigente. Formularios esperan respuesta antes de cerrarse y conservan entrada si hay conflicto.
 
-### Realtime y desconexión
+### Actualización manual y desconexión
 
-Para dos dispositivos basta Postgres Changes sobre UPDATE de `games`, filtrado por ID y autorizado por RLS, con publicación configurada explícitamente. No suscribir textos de todas las tablas ni añadir Presence/Broadcast para el MVP. El filtro de canal no es control de acceso. [Postgres Changes](https://supabase.com/docs/guides/realtime/postgres-changes).
+Consultar el snapshot autorizado al entrar, recargar o pulsar **Actualizar partida**, evitando cachés obsoletas. Después de cada comando, mostrar su estado confirmado en el dispositivo que lo ejecutó. El otro teléfono conserva la última vista hasta actualizar manualmente. No configurar publicaciones, suscripciones Realtime, WebSockets ni polling; las actualizaciones automáticas quedan como mejora futura opcional.
 
-El evento invalida el snapshot; no aplica parches confiando en orden de entrega. Suscribirse y sincronizar al confirmar conexión, volver a consultar tras reconexión/foco, agrupar avisos y no retroceder de revisión. Consultar también después de cada comando. Ante caída del canal mostrar desconexión y revalidar antes de nuevas mutaciones o reintentos; al revocar membresía o vencer sesión, bloquear acceso y limpiar estado. No prometer modo offline, colas durables ni fusión automática de conflictos.
+Persistir pregunta activa, roles, turno, progreso y configuración compartida. Actualizar solo lee: no sortea, completa ni alterna turnos. Descartar respuestas HTTP antiguas y snapshots de menor revisión. Una acción con revisión obsoleta muestra «La partida se actualizó. Actualiza para continuar» sin sobrescribir cambios ni ejecutarse automáticamente sobre el turno nuevo.
+
+Mostrar carga, envío y errores de red. Conservar el último snapshot confirmado como referencia si falla una consulta, indicando que puede estar desactualizado; no simular guardados. Al recuperar conexión, consultar antes de reintentar comandos de resultado incierto y conservar su identificador idempotente. Al revocar membresía o vencer sesión, bloquear acceso y limpiar estado. No prometer modo offline, colas durables ni fusión automática de conflictos.
 
 Decisión ajustada al juego compartido: llevar la lista de saltadas a configuración de `games`, compartida hasta “recuperar” o “nueva ronda”; no reiniciarla cuando un celular recarga. Conservar `lastSkippedId` para traducir el respaldo legado. Esto cambia la duración de los saltos frente a la visita local y debe reflejarse en copy y tests. `sessionCompleted` sigue siendo un contador visual por dispositivo, explícitamente local.
 
@@ -235,7 +243,7 @@ Las pruebas actuales cubren reglas puras, originales, parser/importaciones, migr
 | P0 | Completar/saltar/reservar con revisión obsoleta o timeout | Bloqueo, revisión y recibos persistentes; carreras de dos clientes y replay probado |
 | P0 | Pérdida o atribución falsa durante migración | Preview/mapeo explícitos, transacción y recuentos; fechas/autor desconocidos preservados |
 | P1 | Catálogo privado en chunks, caché de sesión o logs | Separación del grafo, `no-store`, revisión de build y logs/trazas con datos sintéticos |
-| P1 | Dispositivos divergen por saltos o eventos perdidos | Saltos compartidos, snapshot coherente y reconsulta al reconectar/foco |
+| P1 | Acciones desde una pantalla desactualizada | Saltos compartidos, snapshot coherente, actualización manual y rechazo de revisión obsoleta |
 | P1 | Formularios o singleton conservan datos de otra sesión | Cancelación/limpieza, revisión de formularios y pruebas de logout/login |
 | P1 | DoS moderado en tooling minimatch | Resolver vía árbol compatible; no ejecutar globs de origen no confiable |
 | P2 | Validación costosa y snapshot de 10.000 preguntas | Medir límites/payload; usar índices/maps y evitar recorridos cuadráticos; paginar si mediciones lo exigen |
@@ -247,7 +255,7 @@ Las pruebas actuales cubren reglas puras, originales, parser/importaciones, migr
 3. **Auth SSR.** Instalar las dos dependencias aprobadas; añadir clientes separados, env validado, invitación/login/callback, renovación y límites de caché. Cierre: dos identidades correctas, sesión vencida/revocada controlada y datos privados ausentes de respuestas públicas/bundle.
 4. **Comandos y adaptación de UI.** Implementar RPC transaccionales, servicio/handlers, repositorio y store async; adaptar ruleta/formularios/lista/configuración. Cierre: reserva y completado simultáneos causan una sola transición; completar vs. saltar tiene un único ganador; replay tras timeout no duplica; una mutación fallida no aparece confirmada.
 5. **Migración y respaldos.** Implementar preview, mapeo, importación inicial atómica, huella de migración y exportación remota versionada. Cierre: importar repetidamente no duplica; colisiones no sobrescriben; fallo parcial revierte; IDs/números y progreso se verifican sin borrar localStorage.
-6. **Realtime y habilitación.** Publicación `games`, suscripción autorizada, limpieza y reconexión; actualizar privacidad/README. Cierre: ambos contextos ven misma activa/turno/filtros/progreso y convergen después de desconexión, incluso si se perdieron eventos. Probar sesión vencida, logout, eventos duplicados y respuestas HTTP fuera de orden.
+6. **Actualización manual y habilitación.** Lectura autorizada al entrar, recargar o pulsar **Actualizar partida**; actualizar privacidad/README. Cierre: ambos contextos recuperan la misma activa/roles/turno/filtros/progreso después de actualizar manualmente, sin modificar la partida ni requerir Realtime o polling. Probar vistas obsoletas, errores de red, reintentos idempotentes, sesión vencida, logout y respuestas HTTP fuera de orden.
 
 Para las etapas de backend, añadir pruebas de integración contra Supabase de prueba/local con fixtures sintéticos y dos sesiones independientes; no usar cuentas ni preguntas íntimas reales en trazas CI. Mantener Vitest para dominio/contratos y Playwright para navegador. No añadir una biblioteca nueva sin aprobación.
 
